@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- 문서 기본 설정: 한글 인코딩, 반응형 화면, 페이지 제목, CSS 연결 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>밤하늘 계절 별자리</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--
+    상단 네비게이션 바입니다.
+    로고는 메인 페이지로 이동하고, 각 메뉴는 다른 HTML 페이지로 이동하도록 href를 사용합니다.
+  -->
+  <header class="site-header">
+    <a class="logo" href="main.html" aria-label="메인 페이지로 이동">ZODIAC</a>
+    <nav class="main-nav" aria-label="주요 메뉴">
+      <a class="nav-link is-current" href="main.html" aria-current="page">메인</a>
+      <a class="nav-link" href="story.html">신화</a>
+      <a class="nav-link" href="game.html">게임</a>
+      <a class="nav-link" href="form.html">운세</a>
+      <a class="nav-link" href="team.html">팀원</a>
+    </nav>
+  </header>
+
+  <main>
+    <!--
+      메인 히어로 영역입니다.
+      왼쪽에는 환영 문구와 이동 버튼이 있고, 오른쪽에는 공통 우주 배경과 별자리 애니메이션 레이어가 있습니다.
+    -->
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="hero-copy">
+        <p class="eyebrow">Seasonal Constellation Guide</p>
+        <h1 id="pageTitle">우주 관측실에서 만나는 계절 별자리</h1>
+        <p class="hero-text">
+          ZODIAC에 오신 것을 환영합니다. 계절 카드를 따라 밤하늘의 대표 별자리를 살펴보고,
+          별빛 속에 담긴 신화와 이야기를 천천히 탐험해보세요.
+        </p>
+        <div class="hero-actions">
+          <!-- 버튼처럼 보이지만 실제로는 페이지 이동 링크입니다. -->
+          <a class="button primary" href="story.html">별자리 신화가 궁금하다면?</a>
+          <a class="button secondary" href="form.html">오늘의 별자리 운세가 궁금하다면?</a>
+        </div>
+      </div>
+
+      <!--
+        별자리 시각화 영역입니다.
+        img는 고정된 밤하늘 배경이고, constellation-layer 안에서 JS가 별과 선을 동적으로 생성합니다.
+      -->
+      <figure class="hero-visual">
+        <img
+          id="heroImage"
+          src="images/background_space.jpg"
+          alt="푸른 성운과 별이 가득한 우주"
+        >
+        <div class="constellation-layer" aria-hidden="true">
+          <!-- 별과 별 사이의 선이 JS에서 div 요소로 추가되는 영역입니다. -->
+          <div class="constellation-lines" id="constellationLines"></div>
+          <!-- 별 점들이 JS에서 span 요소로 추가되는 영역입니다. -->
+          <div class="constellation-stars" id="constellationStars"></div>
+        </div>
+      </figure>
+    </section>
+
+    <!--
+      계절 카드 영역입니다.
+      각 버튼의 data-season 값은 JS에서 어떤 계절 데이터와 별자리 좌표를 사용할지 찾는 키로 쓰입니다.
+    -->
+    <section class="season-section" id="season-section" aria-labelledby="seasonTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Four Seasons</p>
+        <h2 id="seasonTitle">계절별 대표 별자리</h2>
+      </div>
+
+      <div class="season-grid">
+        <button class="season-card spring" type="button" data-season="spring">
+          <span class="season-name">봄</span>
+          <strong>사자자리</strong>
+          <span class="season-note">맑은 봄밤 남쪽 하늘에서 찾기 쉬운 대표 별자리</span>
+        </button>
+
+        <button class="season-card summer" type="button" data-season="summer">
+          <span class="season-name">여름</span>
+          <strong>백조자리</strong>
+          <span class="season-note">은하수 근처에서 십자 형태로 빛나는 여름 별자리</span>
+        </button>
+
+        <button class="season-card autumn" type="button" data-season="autumn">
+          <span class="season-name">가을</span>
+          <strong>페가수스자리</strong>
+          <span class="season-note">가을철 대사각형으로 밤하늘 방향을 잡는 별자리</span>
+        </button>
+
+        <button class="season-card winter" type="button" data-season="winter">
+          <span class="season-name">겨울</span>
+          <strong>오리온자리</strong>
+          <span class="season-note">밝은 별과 허리띠가 돋보이는 겨울 대표 별자리</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!--
+    계절 카드를 클릭했을 때 열리는 모달입니다.
+    내부 텍스트와 3개의 별자리 카드 내용은 JS에서 선택한 계절에 맞게 채웁니다.
+  -->
+  <div class="modal" id="seasonModal" aria-hidden="true">
+    <!-- 모달 바깥 어두운 배경입니다. 클릭하면 data-close-modal 속성 때문에 JS에서 모달이 닫힙니다. -->
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="팝업 닫기" data-close-modal>&times;</button>
+      <p class="modal-season" id="modalSeason"></p>
+      <h2 id="modalTitle"></h2>
+      <div class="modal-summary" id="modalSummary"></div>
+    </section>
+  </div>
+
+  <!-- defer를 사용해서 HTML을 먼저 읽은 뒤 JS가 실행되도록 합니다. -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>
