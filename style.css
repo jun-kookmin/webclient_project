@@ -1,0 +1,698 @@
+:root {
+  /* 사이트 전체에서 반복해서 쓰는 색상, 그림자, 둥근 모서리 값을 변수로 모아둡니다. */
+  --bg: #020616;
+  --bg-deep: #030a22;
+  --panel: rgba(3, 18, 43, 0.78);
+  --panel-strong: rgba(5, 29, 58, 0.9);
+  --cyan: #50f4ff;
+  --cyan-soft: rgba(80, 244, 255, 0.2);
+  --blue: #1266ff;
+  --blue-soft: rgba(18, 102, 255, 0.28);
+  --white: #f7fbff;
+  --text: #eef8ff;
+  --text-muted: #b8c7d8;
+  --line: rgba(80, 244, 255, 0.42);
+  --line-muted: rgba(184, 199, 216, 0.22);
+  --panel-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 8px;
+}
+
+/* 모든 요소가 padding과 border를 포함해서 width/height를 계산하도록 통일합니다. */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* 내부 링크로 이동할 때 갑자기 점프하지 않고 부드럽게 스크롤됩니다. */
+  scroll-behavior: smooth;
+}
+
+body {
+  /*
+    페이지 전체 기본 스타일입니다.
+    여러 개의 radial-gradient와 linear-gradient를 겹쳐서 깊은 우주 배경 느낌을 만듭니다.
+  */
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Noto Sans KR", "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(2, 6, 22, 0.1), rgba(2, 6, 22, 0.95)),
+    radial-gradient(circle at 73% 17%, rgba(80, 244, 255, 0.24), transparent 22rem),
+    radial-gradient(circle at 18% 70%, rgba(18, 102, 255, 0.3), transparent 30rem),
+    radial-gradient(circle at 50% 105%, rgba(80, 244, 255, 0.12), transparent 24rem),
+    linear-gradient(135deg, #040813 0%, #061b3e 45%, #030712 100%);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  /* body 뒤에 별, 격자, HUD 원형 장식 레이어를 깔기 위한 가상 요소입니다. */
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  /* 작은 별 점과 얇은 격자선을 배경에 반복해서 깔아 밤하늘/관측 화면 느낌을 냅니다. */
+  background-image:
+    radial-gradient(circle, rgba(247, 251, 255, 0.95) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(80, 244, 255, 0.75) 0 1px, transparent 1.5px),
+    linear-gradient(rgba(80, 244, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 244, 255, 0.08) 1px, transparent 1px);
+  background-position: 0 0, 32px 44px, 0 0, 0 0;
+  background-size: 92px 92px, 146px 146px, 48px 48px, 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.35));
+  opacity: 0.62;
+}
+
+body::after {
+  /* 대각선 HUD 라인과 원형 계기판 같은 장식을 추가하는 배경 레이어입니다. */
+  background:
+    linear-gradient(115deg, transparent 0 62%, rgba(80, 244, 255, 0.14) 62.2% 62.7%, transparent 63%),
+    linear-gradient(35deg, transparent 0 18%, rgba(80, 244, 255, 0.1) 18.2% 18.7%, transparent 19%),
+    radial-gradient(circle at 80% 24%, transparent 0 6.7rem, rgba(80, 244, 255, 0.5) 6.74rem 6.82rem, transparent 6.9rem),
+    radial-gradient(circle at 80% 24%, transparent 0 4.4rem, rgba(80, 244, 255, 0.32) 4.45rem 4.54rem, transparent 4.62rem),
+    radial-gradient(circle at 20% 78%, transparent 0 5.8rem, rgba(80, 244, 255, 0.34) 5.86rem 5.95rem, transparent 6.04rem);
+  opacity: 0.36;
+}
+
+a {
+  /* 링크의 기본 밑줄과 파란색을 제거하고 현재 글자색을 그대로 사용합니다. */
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  /* 버튼도 부모 요소의 글꼴을 그대로 상속받도록 합니다. */
+  font: inherit;
+}
+
+.site-header {
+  /* 화면 상단에 고정되는 네비게이션 바입니다. 스크롤해도 계속 보입니다. */
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 84px;
+  padding: 0 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(1, 6, 18, 0.92), rgba(4, 19, 42, 0.84));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  /* 좌측 ZODIAC 로고입니다. 네온처럼 보이도록 text-shadow를 여러 겹 사용합니다. */
+  min-width: 124px;
+  padding: 0.52rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, rgba(80, 244, 255, 0.18), rgba(18, 102, 255, 0.12)),
+    rgba(4, 21, 47, 0.76);
+  box-shadow: inset 0 0 16px rgba(80, 244, 255, 0.14), 0 0 18px rgba(80, 244, 255, 0.12);
+  color: var(--white);
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 1.16rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(80, 244, 255, 0.95),
+    0 0 28px rgba(18, 102, 255, 0.72);
+}
+
+.main-nav {
+  /* 메뉴 링크들을 가로로 정렬하고 반투명 패널처럼 보이게 합니다. */
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--line-muted);
+  border-radius: var(--radius-md);
+  background: rgba(5, 29, 58, 0.56);
+}
+
+.nav-link {
+  /* 개별 네비게이션 링크의 클릭 영역과 기본 색상입니다. */
+  min-width: 66px;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 700;
+  transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.is-current {
+  /* 마우스 호버, 키보드 포커스, 현재 페이지 메뉴에 같은 강조 스타일을 줍니다. */
+  color: var(--white);
+  background: rgba(80, 244, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(80, 244, 255, 0.24);
+}
+
+main {
+  /* 본문 전체 폭을 제한해서 너무 넓은 화면에서도 읽기 좋게 만듭니다. */
+  width: min(1260px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 122px 0 68px;
+}
+
+h1,
+h2,
+p {
+  /* 브라우저 기본 위쪽 margin을 제거해 섹션 간격을 직접 제어합니다. */
+  margin-top: 0;
+}
+
+.hero {
+  /* 히어로 영역을 왼쪽 문구, 오른쪽 시각화 영역의 2열 그리드로 배치합니다. */
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.55fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.hero-copy,
+.hero-visual,
+.season-card,
+.modal-panel {
+  /* 주요 패널들이 같은 유리/HUD 느낌을 공유하도록 공통 배경과 테두리를 지정합니다. */
+  position: relative;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(80, 244, 255, 0.12), transparent 35%),
+    linear-gradient(165deg, var(--panel-strong), rgba(2, 8, 25, 0.92));
+  box-shadow: var(--panel-shadow), inset 0 0 34px rgba(80, 244, 255, 0.08);
+}
+
+.hero-copy::before,
+.hero-visual::after,
+.season-card::after,
+.modal-panel::before {
+  /* 패널 안쪽에 얇은 보조 테두리를 추가해서 미래형 인터페이스 느낌을 냅니다. */
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(80, 244, 255, 0.18);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.hero-copy {
+  /* 히어로 왼쪽 문구 패널입니다. 내용을 세로 중앙에 배치합니다. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 348px;
+  padding: 34px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.hero-copy::after {
+  /* 문구 패널 오른쪽 아래의 원형 HUD 장식입니다. 실제 콘텐츠에는 영향을 주지 않습니다. */
+  position: absolute;
+  right: -64px;
+  bottom: -68px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(80, 244, 255, 0.48);
+  border-radius: 50%;
+  content: "";
+  background:
+    radial-gradient(circle, transparent 0 34%, rgba(80, 244, 255, 0.22) 34.4% 35.4%, transparent 36%),
+    conic-gradient(from 20deg, transparent 0 20%, rgba(80, 244, 255, 0.45) 20% 23%, transparent 23% 46%, rgba(80, 244, 255, 0.35) 46% 48%, transparent 48%);
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.eyebrow {
+  /* 작은 영문 보조 제목입니다. 계절/섹션 성격을 짧게 보여줍니다. */
+  margin: 0 0 0.8rem;
+  color: var(--cyan);
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  /* 메인 제목입니다. clamp로 화면 크기에 맞춰 최소/최대 폰트 크기를 제한합니다. */
+  margin-bottom: 0.95rem;
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  line-height: 1.25;
+}
+
+.hero-text {
+  /* 히어로 설명 문구입니다. 제목보다 약하게 보이도록 muted 색상을 사용합니다. */
+  margin-bottom: 1.4rem;
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  /* 히어로 안의 두 링크 버튼을 가로로 배치하고, 좁은 화면에서는 줄바꿈되게 합니다. */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button {
+  /* a 태그와 button 태그 모두 같은 버튼 모양으로 보이게 하는 공통 클래스입니다. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 1.2rem;
+  border: 1px solid rgba(80, 244, 255, 0.38);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  /* 버튼에 마우스나 키보드 포커스가 들어오면 살짝 올라가고 빛나게 합니다. */
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(80, 244, 255, 0.32);
+}
+
+.button.primary {
+  /* 주 버튼은 청록색으로 채워서 가장 먼저 보이게 합니다. */
+  color: #03101c;
+  background: linear-gradient(135deg, var(--cyan), #86fbff);
+}
+
+.button.secondary {
+  /* 보조 버튼은 어두운 반투명 스타일로 주 버튼보다 덜 강조합니다. */
+  color: var(--text);
+  background: rgba(5, 29, 58, 0.62);
+}
+
+.hero-visual {
+  /* 오른쪽 밤하늘/별자리 애니메이션 영역입니다. 내부 요소가 튀어나오지 않게 overflow를 숨깁니다. */
+  min-height: 348px;
+  margin: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  /* 밤하늘 이미지 위에 얹는 HUD 격자와 빛줄기 오버레이입니다. */
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(3, 10, 34, 0.62), transparent 35%, rgba(3, 10, 34, 0.54)),
+    linear-gradient(rgba(80, 244, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 244, 255, 0.14) 1px, transparent 1px),
+    radial-gradient(circle at 74% 33%, rgba(80, 244, 255, 0.66), transparent 0.35rem),
+    radial-gradient(circle at 64% 42%, rgba(255, 255, 255, 0.95), transparent 0.28rem),
+    linear-gradient(24deg, transparent 0 42%, rgba(255, 255, 255, 0.62) 42.2% 42.5%, transparent 42.8%),
+    linear-gradient(135deg, transparent 0 58%, rgba(80, 244, 255, 0.46) 58.2% 58.5%, transparent 58.8%);
+  background-size: auto, 40px 40px, 40px 40px, auto, auto, auto, auto;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-visual::after {
+  /* hero-copy와 공유하는 안쪽 테두리 가상 요소의 z-index를 별도 지정합니다. */
+  z-index: 3;
+}
+
+.hero-visual img {
+  /* 공통 밤하늘 배경 이미지입니다. object-fit: cover로 영역을 꽉 채웁니다. */
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 348px;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.08) brightness(0.68);
+  transition: opacity 220ms ease, transform 450ms ease;
+}
+
+.hero-visual.is-changing img {
+  /* 별자리가 바뀔 때 배경이 아주 살짝 확대되어 전환감을 줍니다. */
+  transform: scale(1.012);
+}
+
+.constellation-layer {
+  /* JS가 생성하는 별과 선을 이미지 위에 올리는 투명 레이어입니다. */
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.constellation-lines {
+  /* 별과 별 사이의 선(div)이 들어가는 레이어입니다. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 8px rgba(80, 244, 255, 0.55));
+  transition: opacity 260ms ease;
+  pointer-events: none;
+}
+
+.constellation-line {
+  /*
+    SVG를 쓰지 않고 div 하나를 선처럼 보이게 만든 클래스입니다.
+    JS가 width와 rotate 각도를 계산해서 두 별 사이에 배치합니다.
+  */
+  position: absolute;
+  height: 1px;
+  border-radius: 999px;
+  background: rgba(168, 250, 255, 0.78);
+  box-shadow: 0 0 10px rgba(80, 244, 255, 0.58);
+  transform-origin: left center;
+}
+
+.constellation-star {
+  /*
+    별 하나를 나타내는 span 요소입니다.
+    JS가 left/top 값을 넣어서 밤하늘 위 원하는 위치에 배치합니다.
+  */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(10px * var(--star-scale, 1));
+  height: calc(10px * var(--star-scale, 1));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #ffffff 0 22%, #a8faff 23% 44%, rgba(80, 244, 255, 0.18) 45% 72%, transparent 73%);
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.92),
+    0 0 22px rgba(80, 244, 255, 0.78),
+    0 0 42px rgba(18, 102, 255, 0.42);
+  transform: translate(-50%, -50%);
+}
+
+.season-section {
+  /* 계절 카드 섹션의 위아래 여백입니다. */
+  padding: 26px 0 10px;
+}
+
+.section-heading {
+  /* 섹션 제목과 카드 그리드 사이 간격입니다. */
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  /* 계절 카드 섹션 제목입니다. */
+  margin-bottom: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.season-grid {
+  /* 4개의 계절 카드를 데스크톱에서 4열로 배치합니다. */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.season-card {
+  /*
+    각 계절 버튼 카드입니다.
+    hover/focus 이벤트는 JS에서 별자리 변경을 일으키고, click 이벤트는 모달을 엽니다.
+  */
+  display: flex;
+  flex-direction: column;
+  min-height: 246px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.season-card::before {
+  /* 카드 상단의 작은 별자리 미리보기 그림을 CSS 배경으로 만듭니다. */
+  width: 100%;
+  height: 88px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(80, 244, 255, 0.38);
+  border-radius: var(--radius-md);
+  content: "";
+  background:
+    radial-gradient(circle at 18% 38%, #ffffff 0 2px, transparent 2.4px),
+    radial-gradient(circle at 36% 56%, var(--cyan) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 58% 30%, #ffffff 0 1.8px, transparent 2.3px),
+    radial-gradient(circle at 78% 66%, var(--cyan) 0 2px, transparent 2.5px),
+    linear-gradient(26deg, transparent 0 23%, rgba(80, 244, 255, 0.62) 23.4% 23.8%, transparent 24.2%),
+    linear-gradient(143deg, transparent 0 46%, rgba(255, 255, 255, 0.5) 46.4% 46.7%, transparent 47.1%),
+    linear-gradient(145deg, rgba(18, 102, 255, 0.32), rgba(2, 8, 25, 0.78));
+  box-shadow: inset 0 0 22px rgba(80, 244, 255, 0.18);
+}
+
+.season-card::after {
+  /* 카드 하단의 "자세히 보기" 텍스트를 가상 요소로 표시합니다. */
+  position: static;
+  inset: auto;
+  margin-top: auto;
+  padding: 0.38rem 0.7rem;
+  border: 1px solid rgba(80, 244, 255, 0.35);
+  border-radius: 7px;
+  content: "자세히 보기";
+  color: var(--white);
+  background: rgba(80, 244, 255, 0.1);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.season-card:hover,
+.season-card:focus-visible {
+  /* 계절 카드가 선택 가능한 요소임을 보여주는 호버/포커스 효과입니다. */
+  transform: translateY(-5px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(80, 244, 255, 0.24), var(--panel-shadow);
+  outline: none;
+}
+
+.season-name {
+  /* 카드 안의 계절 이름입니다. */
+  color: var(--cyan);
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.season-card strong {
+  /* 카드 안의 대표 별자리 이름입니다. */
+  display: block;
+  margin: 0.35rem 0 0.45rem;
+  font-size: 1.38rem;
+}
+
+.season-note {
+  /* 카드 안의 짧은 설명입니다. */
+  margin-bottom: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+.modal {
+  /* 화면 전체를 덮는 팝업 영역입니다. 기본 상태에서는 보이지 않고 클릭도 받지 않습니다. */
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.modal.is-open {
+  /* JS가 is-open 클래스를 붙이면 모달이 보이고 클릭할 수 있게 됩니다. */
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal-backdrop {
+  /* 모달 뒤쪽의 어두운 배경입니다. */
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 5, 16, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.modal-panel {
+  /* 모달 안쪽 콘텐츠 패널입니다. 3열 카드가 들어가므로 데스크톱에서는 넓게 잡습니다. */
+  width: min(920px, 100%);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  transform: translateY(14px) scale(0.98);
+  transition: transform 180ms ease;
+}
+
+.modal.is-open .modal-panel {
+  /* 모달이 열릴 때 패널이 원래 위치와 크기로 돌아오며 나타납니다. */
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  /* 모달 오른쪽 위 닫기 버튼입니다. */
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text);
+  background: rgba(5, 29, 58, 0.74);
+  cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  /* 닫기 버튼에 호버/포커스가 들어오면 배경을 밝게 합니다. */
+  background: rgba(80, 244, 255, 0.18);
+}
+
+.modal-season {
+  /* 모달 상단의 "봄 대표 별자리" 같은 보조 문구입니다. */
+  margin-bottom: 0.46rem;
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+.modal-panel h2 {
+  /* 모달 제목입니다. 오른쪽 닫기 버튼과 겹치지 않게 padding-right를 둡니다. */
+  margin-bottom: 0.8rem;
+  padding-right: 42px;
+  font-size: 1.85rem;
+}
+
+.modal-summary {
+  /* 모달 안의 별자리 설명 카드 3개를 데스크톱에서 3열로 배치합니다. */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.modal-summary article {
+  /* 각 별자리 설명 카드입니다. 이미지, 제목, 설명을 담습니다. */
+  overflow: hidden;
+  padding: 12px 14px;
+  border: 1px solid rgba(80, 244, 255, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(5, 29, 58, 0.42);
+}
+
+.modal-summary img {
+  /* 설명 카드 상단의 별자리 이미지입니다. object-fit: contain으로 사진 전체가 보이게 합니다. */
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 0.85rem;
+  border: 1px solid rgba(80, 244, 255, 0.2);
+  border-radius: 6px;
+  object-fit: contain;
+  background: rgba(2, 8, 25, 0.7);
+}
+
+.modal-summary h3 {
+  /* 설명 카드 안의 별자리 이름입니다. */
+  margin: 0 0 0.35rem;
+  color: var(--white);
+  font-size: 1.05rem;
+}
+
+.modal-summary p {
+  /* 설명 카드 안의 본문입니다. */
+  margin-bottom: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 980px) {
+  /* 태블릿 이하 화면에서는 히어로를 1열로 바꾸고 계절 카드는 2열로 줄입니다. */
+  .site-header {
+    padding: 0 16px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy,
+  .hero-visual,
+  .hero-visual img {
+    min-height: 310px;
+  }
+
+  .season-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modal-summary {
+    /* 모달 카드 3열은 좁은 화면에서 답답하므로 1열로 쌓습니다. */
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  /* 모바일 화면에서는 네비게이션을 세로로 정리하고 버튼/카드를 한 줄씩 배치합니다. */
+  .site-header {
+    align-items: flex-start;
+    min-height: 122px;
+    padding-top: 14px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  main {
+    width: min(100% - 20px, 1260px);
+    padding-top: 152px;
+  }
+
+  .hero-copy {
+    padding: 24px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .season-grid {
+    grid-template-columns: 1fr;
+  }
+}
