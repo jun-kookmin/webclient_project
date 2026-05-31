@@ -1,20 +1,25 @@
 <!DOCTYPE html>
+<!-- lang="ko": 페이지의 기본 언어가 한국어임을 브라우저와 보조기술에 알려줍니다. -->
 <html lang="ko">
 <head>
-  <!-- 문서 기본 설정: 한글 인코딩, 반응형 화면, 페이지 제목, CSS 연결 -->
+  <!-- UTF-8을 사용해야 한글이 깨지지 않습니다. -->
   <meta charset="UTF-8">
+  <!-- 모바일 화면에서도 실제 기기 너비에 맞춰 반응형 레이아웃이 적용되게 합니다. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 브라우저 탭에 표시되는 제목입니다. -->
   <title>밤하늘 계절 별자리</title>
-  <link rel="stylesheet" href="main.css">
+  <!-- 이 HTML의 모든 디자인은 css/main.css에서 담당합니다. -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <!--
-    상단 네비게이션 바입니다.
-    로고는 메인 페이지로 이동하고, 각 메뉴는 다른 HTML 페이지로 이동하도록 href를 사용합니다.
-  -->
+  <!-- site-header: 화면 상단에 고정되는 로고와 메뉴 영역입니다. CSS에서 fixed로 고정합니다. -->
   <header class="site-header">
+    <!-- logo: 메인 페이지로 돌아가는 링크입니다. aria-label은 화면낭독기용 설명입니다. -->
     <a class="logo" href="main.html" aria-label="메인 페이지로 이동">ZODIAC</a>
+
+    <!-- main-nav: 주요 페이지 이동 링크 묶음입니다. aria-label로 메뉴의 용도를 설명합니다. -->
     <nav class="main-nav" aria-label="주요 메뉴">
+      <!-- nav-link: 공통 메뉴 링크 스타일입니다. is-current와 aria-current는 현재 페이지 표시용입니다. -->
       <a class="nav-link is-current" href="main.html" aria-current="page">메인</a>
       <a class="nav-link" href="story.html">신화</a>
       <a class="nav-link" href="game.html">게임</a>
@@ -23,99 +28,218 @@
     </nav>
   </header>
 
+  <!-- main: 페이지의 실제 본문입니다. CSS에서 최대 너비와 상단 여백을 줍니다. -->
   <main>
-    <!--
-      메인 히어로 영역입니다.
-      왼쪽에는 환영 문구와 이동 버튼이 있고, 오른쪽에는 공통 우주 배경과 별자리 애니메이션 레이어가 있습니다.
-    -->
+    <!-- hero: 첫 화면의 대표 영역입니다. aria-labelledby는 이 섹션의 제목이 pageTitle임을 연결합니다. -->
     <section class="hero" aria-labelledby="pageTitle">
+      <!-- hero-copy: 왼쪽 텍스트 영역입니다. 제목, 설명, 이동 버튼을 세로로 배치합니다. -->
       <div class="hero-copy">
+        <!-- eyebrow: 제목 위에 붙는 작은 보조 문구입니다. -->
         <p class="eyebrow">Seasonal Constellation Guide</p>
+        <!-- pageTitle: hero 섹션의 실제 제목입니다. -->
         <h1 id="pageTitle">우주 관측실에서 만나는 계절 별자리</h1>
+        <!-- hero-text: 페이지의 목적을 짧게 설명하는 본문입니다. -->
         <p class="hero-text">
           ZODIAC에 오신 것을 환영합니다. 계절 카드를 따라 밤하늘의 대표 별자리를 살펴보고,
           별빛 속에 담긴 신화와 이야기를 천천히 탐험해보세요.
         </p>
+        <!-- hero-actions: 버튼처럼 보이는 페이지 이동 링크들을 한 줄 또는 여러 줄로 배치합니다. -->
         <div class="hero-actions">
-          <!-- 버튼처럼 보이지만 실제로는 페이지 이동 링크입니다. -->
+          <!-- button primary/secondary: 같은 버튼 구조에 색상만 다르게 적용하는 클래스 조합입니다. -->
           <a class="button primary" href="story.html">별자리 신화가 궁금하다면?</a>
           <a class="button secondary" href="form.html">오늘의 별자리 운세가 궁금하다면?</a>
         </div>
       </div>
 
-      <!--
-        별자리 시각화 영역입니다.
-        img는 고정된 밤하늘 배경이고, constellation-layer 안에서 JS가 별과 선을 동적으로 생성합니다.
-      -->
+      <!-- hero-visual: 오른쪽 밤하늘 이미지 위에 미리 만들어 둔 별자리 div를 겹쳐 보여주는 영역입니다. -->
       <figure class="hero-visual">
-        <img
-          id="heroImage"
-          src="images/background_space.jpg"
-          alt="푸른 성운과 별이 가득한 우주"
-        >
-        <div class="constellation-layer" aria-hidden="true">
-          <!-- 별과 별 사이의 선이 JS에서 div 요소로 추가되는 영역입니다. -->
-          <div class="constellation-lines" id="constellationLines"></div>
-          <!-- 별 점들이 JS에서 span 요소로 추가되는 영역입니다. -->
-          <div class="constellation-stars" id="constellationStars"></div>
+        <!-- heroImage: 고정 배경 이미지입니다. -->
+        <img id="heroImage" src="images/background_space.jpg">
+
+        <!--
+          constellation-layer:
+          별과 선을 JS로 계산해서 만들지 않고, HTML에 div로 미리 찍어둔 영역입니다.
+          JS는 hero-visual의 data-active-season 값만 바꾸고, CSS가 해당 계절 그룹만 보여줍니다.
+        -->
+        <div class="constellation-layer">
+          <div class="constellation-group spring-stars">
+            <div class="line" style="left: 24%; top: 55%; width: 18.60%; transform: rotate(-36.25deg);"></div>
+            <div class="line" style="left: 39%; top: 44%; width: 5.00%; transform: rotate(0deg);"></div>
+            <div class="line" style="left: 44%; top: 44%; width: 18.25%; transform: rotate(-9.46deg);"></div>
+            <div class="line" style="left: 24%; top: 55%; width: 19.00%; transform: rotate(0deg);"></div>
+            <div class="line" style="left: 43%; top: 55%; width: 25.50%; transform: rotate(11.31deg);"></div>
+            <div class="line" style="left: 68%; top: 60%; width: 14.04%; transform: rotate(4.09deg);"></div>
+            <div class="line" style="left: 68%; top: 60%; width: 19.92%; transform: rotate(-107.53deg);"></div>
+            <div class="line" style="left: 62%; top: 41%; width: 10.44%; transform: rotate(-106.70deg);"></div>
+            <div class="line" style="left: 59%; top: 31%; width: 13.45%; transform: rotate(-48.01deg);"></div>
+            <div class="line" style="left: 68%; top: 21%; width: 13.04%; transform: rotate(32.47deg);"></div>
+            <div class="line" style="left: 62%; top: 41%; width: 8.06%; transform: rotate(29.74deg);"></div>
+            <div class="star" style="left: 24%; top: 55%; --star-size: 0.95;"></div>
+            <div class="star" style="left: 43%; top: 55%; --star-size: 0.78;"></div>
+            <div class="star" style="left: 68%; top: 60%; --star-size: 1.45;"></div>
+            <div class="star" style="left: 82%; top: 61%; --star-size: 0.72;"></div>
+            <div class="star" style="left: 39%; top: 44%; --star-size: 0.86;"></div>
+            <div class="star" style="left: 44%; top: 44%; --star-size: 0.68;"></div>
+            <div class="star" style="left: 62%; top: 41%; --star-size: 1.05;"></div>
+            <div class="star" style="left: 59%; top: 31%; --star-size: 0.82;"></div>
+            <div class="star" style="left: 68%; top: 21%; --star-size: 0.85;"></div>
+            <div class="star" style="left: 79%; top: 28%; --star-size: 0.78;"></div>
+            <div class="star" style="left: 69%; top: 45%; --star-size: 0.75;"></div>
+          </div>
+
+          <div class="constellation-group summer-stars">
+            <div class="line" style="left: 11%; top: 59%; width: 12.04%; transform: rotate(4.76deg);"></div>
+            <div class="line" style="left: 23%; top: 60%; width: 19.31%; transform: rotate(-21.25deg);"></div>
+            <div class="line" style="left: 41%; top: 53%; width: 11.66%; transform: rotate(-59.04deg);"></div>
+            <div class="line" style="left: 47%; top: 43%; width: 15.65%; transform: rotate(-26.57deg);"></div>
+            <div class="line" style="left: 61%; top: 36%; width: 18.03%; transform: rotate(-70.56deg);"></div>
+            <div class="line" style="left: 67%; top: 19%; width: 6.40%; transform: rotate(-38.66deg);"></div>
+            <div class="line" style="left: 41%; top: 32%; width: 12.53%; transform: rotate(61.39deg);"></div>
+            <div class="line" style="left: 47%; top: 43%; width: 18.36%; transform: rotate(60.64deg);"></div>
+            <div class="line" style="left: 56%; top: 59%; width: 20.25%; transform: rotate(57.09deg);"></div>
+            <div class="star" style="left: 11%; top: 59%; --star-size: 0.7;"></div>
+            <div class="star" style="left: 23%; top: 60%; --star-size: 0.82;"></div>
+            <div class="star" style="left: 41%; top: 53%; --star-size: 0.86;"></div>
+            <div class="star" style="left: 47%; top: 43%; --star-size: 1.28;"></div>
+            <div class="star" style="left: 41%; top: 32%; --star-size: 1.06;"></div>
+            <div class="star" style="left: 61%; top: 36%; --star-size: 0.92;"></div>
+            <div class="star" style="left: 67%; top: 19%; --star-size: 0.82;"></div>
+            <div class="star" style="left: 72%; top: 15%; --star-size: 0.78;"></div>
+            <div class="star" style="left: 56%; top: 59%; --star-size: 0.9;"></div>
+            <div class="star" style="left: 67%; top: 76%; --star-size: 1.12;"></div>
+          </div>
+
+          <div class="constellation-group autumn-stars">
+            <div class="line" style="left: 21%; top: 27%; width: 38.12%; transform: rotate(94.51deg);"></div>
+            <div class="line" style="left: 18%; top: 65%; width: 31.58%; transform: rotate(10.95deg);"></div>
+            <div class="line" style="left: 49%; top: 71%; width: 43.10%; transform: rotate(-93.99deg);"></div>
+            <div class="line" style="left: 46%; top: 28%; width: 25.02%; transform: rotate(-177.71deg);"></div>
+            <div class="line" style="left: 46%; top: 28%; width: 11.31%; transform: rotate(-45deg);"></div>
+            <div class="line" style="left: 54%; top: 20%; width: 17.03%; transform: rotate(-49.76deg);"></div>
+            <div class="line" style="left: 46%; top: 28%; width: 10.63%; transform: rotate(48.81deg);"></div>
+            <div class="line" style="left: 53%; top: 36%; width: 4.47%; transform: rotate(63.43deg);"></div>
+            <div class="line" style="left: 46%; top: 28%; width: 24.00%; transform: rotate(0deg);"></div>
+            <div class="line" style="left: 70%; top: 28%; width: 10.77%; transform: rotate(-21.80deg);"></div>
+            <div class="line" style="left: 49%; top: 71%; width: 7.07%; transform: rotate(45deg);"></div>
+            <div class="line" style="left: 54%; top: 76%; width: 8.06%; transform: rotate(29.74deg);"></div>
+            <div class="line" style="left: 61%; top: 80%; width: 18.03%; transform: rotate(33.69deg);"></div>
+            <div class="line" style="left: 76%; top: 90%; width: 26.83%; transform: rotate(-63.43deg);"></div>
+            <div class="star" style="left: 21%; top: 27%; --star-size: 1;"></div>
+            <div class="star" style="left: 18%; top: 65%; --star-size: 0.88;"></div>
+            <div class="star" style="left: 46%; top: 28%; --star-size: 1.12;"></div>
+            <div class="star" style="left: 49%; top: 71%; --star-size: 1.08;"></div>
+            <div class="star" style="left: 54%; top: 20%; --star-size: 0.82;"></div>
+            <div class="star" style="left: 65%; top: 7%; --star-size: 0.7;"></div>
+            <div class="star" style="left: 53%; top: 36%; --star-size: 0.75;"></div>
+            <div class="star" style="left: 55%; top: 40%; --star-size: 0.7;"></div>
+            <div class="star" style="left: 70%; top: 28%; --star-size: 0.78;"></div>
+            <div class="star" style="left: 80%; top: 24%; --star-size: 0.68;"></div>
+            <div class="star" style="left: 54%; top: 76%; --star-size: 0.72;"></div>
+            <div class="star" style="left: 61%; top: 80%; --star-size: 0.7;"></div>
+            <div class="star" style="left: 76%; top: 90%; --star-size: 0.86;"></div>
+            <div class="star" style="left: 88%; top: 66%; --star-size: 1.05;"></div>
+          </div>
+
+          <div class="constellation-group winter-stars">
+            <div class="line" style="left: 32%; top: 34%; width: 14.32%; transform: rotate(-77.91deg);"></div>
+            <div class="line" style="left: 35%; top: 20%; width: 19.10%; transform: rotate(-47.12deg);"></div>
+            <div class="line" style="left: 32%; top: 34%; width: 33.14%; transform: rotate(84.81deg);"></div>
+            <div class="line" style="left: 35%; top: 67%; width: 17.00%; transform: rotate(118.07deg);"></div>
+            <div class="line" style="left: 27%; top: 82%; width: 36.22%; transform: rotate(6.34deg);"></div>
+            <div class="line" style="left: 63%; top: 86%; width: 21.19%; transform: rotate(-109.29deg);"></div>
+            <div class="line" style="left: 56%; top: 66%; width: 8.06%; transform: rotate(-150.26deg);"></div>
+            <div class="line" style="left: 49%; top: 62%; width: 12.00%; transform: rotate(-90deg);"></div>
+            <div class="line" style="left: 49%; top: 50%; width: 14.00%; transform: rotate(-90deg);"></div>
+            <div class="line" style="left: 49%; top: 36%; width: 17.12%; transform: rotate(-173.29deg);"></div>
+            <div class="line" style="left: 35%; top: 67%; width: 10.05%; transform: rotate(-5.71deg);"></div>
+            <div class="line" style="left: 45%; top: 66%; width: 5.66%; transform: rotate(-45deg);"></div>
+            <div class="line" style="left: 49%; top: 62%; width: 8.06%; transform: rotate(29.74deg);"></div>
+            <div class="line" style="left: 49%; top: 36%; width: 24.33%; transform: rotate(-9.46deg);"></div>
+            <div class="line" style="left: 73%; top: 32%; width: 19.10%; transform: rotate(83.99deg);"></div>
+            <div class="line" style="left: 75%; top: 51%; width: 17.09%; transform: rotate(110.56deg);"></div>
+            <div class="line" style="left: 45%; top: 66%; width: 12.04%; transform: rotate(94.76deg);"></div>
+            <div class="star" style="left: 48%; top: 6%; --star-size: 0.75;"></div>
+            <div class="star" style="left: 35%; top: 20%; --star-size: 0.72;"></div>
+            <div class="star" style="left: 32%; top: 34%; --star-size: 1.22;"></div>
+            <div class="star" style="left: 49%; top: 36%; --star-size: 0.95;"></div>
+            <div class="star" style="left: 49%; top: 50%; --star-size: 0.72;"></div>
+            <div class="star" style="left: 49%; top: 62%; --star-size: 0.95;"></div>
+            <div class="star" style="left: 35%; top: 67%; --star-size: 0.82;"></div>
+            <div class="star" style="left: 45%; top: 66%; --star-size: 0.78;"></div>
+            <div class="star" style="left: 56%; top: 66%; --star-size: 0.8;"></div>
+            <div class="star" style="left: 27%; top: 82%; --star-size: 1.05;"></div>
+            <div class="star" style="left: 63%; top: 86%; --star-size: 1.28;"></div>
+            <div class="star" style="left: 73%; top: 32%; --star-size: 0.68;"></div>
+            <div class="star" style="left: 75%; top: 51%; --star-size: 0.68;"></div>
+            <div class="star" style="left: 69%; top: 67%; --star-size: 0.72;"></div>
+            <div class="star" style="left: 44%; top: 78%; --star-size: 0.68;"></div>
+          </div>
         </div>
       </figure>
     </section>
 
-    <!--
-      계절 카드 영역입니다.
-      각 버튼의 data-season 값은 JS에서 어떤 계절 데이터와 별자리 좌표를 사용할지 찾는 키로 쓰입니다.
-    -->
+    <!-- season-section: 네 개의 계절 카드를 보여주는 영역입니다. -->
     <section class="season-section" id="season-section" aria-labelledby="seasonTitle">
+      <!-- section-heading: 계절 카드 영역의 보조 문구와 제목을 묶습니다. -->
       <div class="section-heading">
         <p class="eyebrow">Four Seasons</p>
         <h2 id="seasonTitle">계절별 대표 별자리</h2>
       </div>
 
+      <!-- season-grid: 계절 카드들을 CSS grid로 배치합니다. 화면 폭에 따라 4열, 2열, 1열로 바뀝니다. -->
       <div class="season-grid">
+        <!--
+          season-card: 클릭 가능한 카드 버튼입니다.
+          data-season 값은 JS가 어떤 계절 별자리 묶음을 보여줄지 찾는 키입니다.
+        -->
         <button class="season-card spring" type="button" data-season="spring">
           <span class="season-name">봄</span>
           <strong>사자자리</strong>
           <span class="season-note">맑은 봄밤 남쪽 하늘에서 찾기 쉬운 대표 별자리</span>
+          <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card summer" type="button" data-season="summer">
           <span class="season-name">여름</span>
           <strong>백조자리</strong>
           <span class="season-note">은하수 근처에서 십자 형태로 빛나는 여름 별자리</span>
+          <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card autumn" type="button" data-season="autumn">
           <span class="season-name">가을</span>
           <strong>페가수스자리</strong>
           <span class="season-note">가을철 대사각형으로 밤하늘 방향을 잡는 별자리</span>
+          <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card winter" type="button" data-season="winter">
           <span class="season-name">겨울</span>
           <strong>오리온자리</strong>
           <span class="season-note">밝은 별과 허리띠가 돋보이는 겨울 대표 별자리</span>
+          <span class="season-action">자세히 보기</span>
         </button>
       </div>
     </section>
   </main>
 
-  <!--
-    계절 카드를 클릭했을 때 열리는 모달입니다.
-    내부 텍스트와 3개의 별자리 카드 내용은 JS에서 선택한 계절에 맞게 채웁니다.
-  -->
-  <div class="modal" id="seasonModal" aria-hidden="true">
-    <!-- 모달 바깥 어두운 배경입니다. 클릭하면 data-close-modal 속성 때문에 JS에서 모달이 닫힙니다. -->
+  <!-- modal: 계절 카드를 클릭했을 때 열리는 팝업 전체 영역입니다. 기본 상태는 CSS에서 display:none입니다. -->
+  <div class="modal" id="seasonModal">
+    <!-- data-close-modal: JS가 이 속성을 가진 요소에 닫기 이벤트를 붙입니다. 배경 클릭으로 닫히게 됩니다. -->
     <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+
+    <!-- modal-panel: 실제 팝업 내용입니다. -->
+    <section class="modal-panel">
+      <!-- modal-close: 닫기 버튼입니다. data-close-modal 덕분에 배경과 같은 닫기 함수를 씁니다. -->
       <button class="modal-close" type="button" aria-label="팝업 닫기" data-close-modal>&times;</button>
+      <!-- 아래 세 요소는 JS의 openSeasonModal 함수가 선택한 계절 데이터로 채웁니다. -->
       <p class="modal-season" id="modalSeason"></p>
       <h2 id="modalTitle"></h2>
       <div class="modal-summary" id="modalSummary"></div>
     </section>
   </div>
 
-  <!-- defer를 사용해서 HTML을 먼저 읽은 뒤 JS가 실행되도록 합니다. -->
+  <!-- defer: HTML 요소를 먼저 만든 뒤 JS를 실행해서 querySelector가 요소를 찾을 수 있게 합니다. -->
   <script src="js/main.js" defer></script>
 </body>
 </html>
