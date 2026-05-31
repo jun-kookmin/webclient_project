@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>별자리 기록실</title>
+
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="main.html" aria-label="메인 페이지로 이동">ZODIAC</a>
+    <nav class="main-nav" aria-label="주요 메뉴">
+      <a class="nav-link" href="main.html">메인</a>
+      <a class="nav-link is-current" href="story.html" aria-current="page">신화</a>
+      <a class="nav-link" href="game.html">게임</a>
+      <a class="nav-link" href="form.html">운세</a>
+      <a class="nav-link" href="team.html">팀원</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="story-hero story-hero-split" aria-labelledby="storyTitle">
+      <div class="story-hero-copy">
+        <p class="eyebrow">Myth Archive</p>
+        <h1 id="storyTitle">별자리 기록실</h1>
+        <p class="story-hero-text">
+          별자리는 생일과 연결되는 황도 12궁뿐 아니라, 계절마다 밤하늘에서 잘 보이는 관측 별자리까지 포함합니다.
+          원하는 기록 영역을 선택해 별자리에 얽힌 신화, 관측 정보, 상징 의미를 확인해보세요.
+        </p>
+      </div>
+
+      <aside class="story-quick-nav" aria-label="별자리 기록 바로가기">
+        <a class="story-nav-card" href="#birthday-records">
+          <span class="story-nav-label">Birthday Signs</span>
+          <strong>생일 별자리</strong>
+          <p>태어난 날짜와 연결되는 황도 12궁 기록</p>
+        </a>
+
+        <a class="story-nav-card" href="#season-records">
+          <span class="story-nav-label">Seasonal Signs</span>
+          <strong>계절 별자리</strong>
+          <p>계절마다 밤하늘에서 잘 보이는 대표 별자리 기록</p>
+        </a>
+      </aside>
+    </section>
+
+    <section class="archive-section" id="birthday-records" aria-labelledby="birthdayTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Birthday Constellation Records</p>
+        <h2 id="birthdayTitle">생일 별자리 기록</h2>
+      </div>
+
+      <div class="story-grid">
+        <button class="story-card" type="button" data-story="aries">
+          <span class="story-code">BIRTH 01</span>
+          <strong>양자리</strong>
+          <span class="story-subtitle">황금 양털의 전설</span>
+          <p>봄의 시작을 알리는 용기와 출발의 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="taurus">
+          <span class="story-code">BIRTH 02</span>
+          <strong>황소자리</strong>
+          <span class="story-subtitle">제우스와 하얀 황소</span>
+          <p>밝은 알데바란과 플레이아데스 성단이 돋보이는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="gemini">
+          <span class="story-code">BIRTH 03</span>
+          <strong>쌍둥이자리</strong>
+          <span class="story-subtitle">카스토르와 폴룩스</span>
+          <p>형제애와 우정을 상징하는 겨울철 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="cancer">
+          <span class="story-code">BIRTH 04</span>
+          <strong>게자리</strong>
+          <span class="story-subtitle">헤라가 보낸 거대한 게</span>
+          <p>작지만 신화 속 역할이 분명한 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="leo">
+          <span class="story-code">BIRTH 05</span>
+          <strong>사자자리</strong>
+          <span class="story-subtitle">헤라클레스와 네메아의 사자</span>
+          <p>강인함과 영웅의 시련을 상징하는 봄철 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="virgo">
+          <span class="story-code">BIRTH 06</span>
+          <strong>처녀자리</strong>
+          <span class="story-subtitle">정의의 여신 아스트라이아</span>
+          <p>봄 하늘에서 넓게 펼쳐지는 대표 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="libra">
+          <span class="story-code">BIRTH 07</span>
+          <strong>천칭자리</strong>
+          <span class="story-subtitle">공정함을 재는 저울</span>
+          <p>균형과 정의를 상징하는 황도 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="scorpius">
+          <span class="story-code">BIRTH 08</span>
+          <strong>전갈자리</strong>
+          <span class="story-subtitle">오리온을 쓰러뜨린 전갈</span>
+          <p>여름 남쪽 하늘에서 강렬하게 보이는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="sagittarius">
+          <span class="story-code">BIRTH 09</span>
+          <strong>사수자리</strong>
+          <span class="story-subtitle">활을 든 켄타우로스</span>
+          <p>은하수 중심 방향에 놓인 여름철 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="capricornus">
+          <span class="story-code">BIRTH 10</span>
+          <strong>염소자리</strong>
+          <span class="story-subtitle">바다염소의 모습</span>
+          <p>신화 속 변신 이야기와 연결되는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="aquarius">
+          <span class="story-code">BIRTH 11</span>
+          <strong>물병자리</strong>
+          <span class="story-subtitle">물을 따르는 소년</span>
+          <p>가을 하늘에서 물의 이미지와 연결되는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="pisces">
+          <span class="story-code">BIRTH 12</span>
+          <strong>물고기자리</strong>
+          <span class="story-subtitle">두 마리 물고기의 끈</span>
+          <p>아프로디테와 에로스의 도피 이야기와 연결되는 별자리</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="archive-section seasonal-archive" id="season-records" aria-labelledby="seasonTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Seasonal Constellation Records</p>
+        <h2 id="seasonTitle">계절 별자리 기록</h2>
+      </div>
+
+      <div class="story-grid">
+        <button class="story-card" type="button" data-story="bootes">
+          <span class="story-code">SPRING 01</span>
+          <strong>목동자리</strong>
+          <span class="story-subtitle">봄 하늘의 밝은 별 아크투루스</span>
+          <p>북두칠성의 손잡이를 따라가면 찾기 쉬운 봄철 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="lyra">
+          <span class="story-code">SUMMER 01</span>
+          <strong>거문고자리</strong>
+          <span class="story-subtitle">오르페우스의 악기</span>
+          <p>밝은 별 베가가 있는 여름철 대표 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="aquila">
+          <span class="story-code">SUMMER 02</span>
+          <strong>독수리자리</strong>
+          <span class="story-subtitle">제우스의 독수리</span>
+          <p>알타이르를 중심으로 여름철 대삼각형을 이루는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="cygnus">
+          <span class="story-code">SUMMER 03</span>
+          <strong>백조자리</strong>
+          <span class="story-subtitle">은하수 위를 나는 백조</span>
+          <p>십자 모양으로 여름 밤하늘에서 잘 보이는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="andromeda">
+          <span class="story-code">AUTUMN 01</span>
+          <strong>안드로메다자리</strong>
+          <span class="story-subtitle">위기에 놓인 공주</span>
+          <p>페가수스자리와 이어지는 가을 밤하늘의 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="pegasus">
+          <span class="story-code">AUTUMN 02</span>
+          <strong>페가수스자리</strong>
+          <span class="story-subtitle">날개 달린 말</span>
+          <p>가을철 대사각형으로 밤하늘 방향을 잡는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="cassiopeia">
+          <span class="story-code">AUTUMN 03</span>
+          <strong>카시오페이아자리</strong>
+          <span class="story-subtitle">자만심이 남긴 별자리</span>
+          <p>W자 모양으로 북쪽 하늘에서 쉽게 찾을 수 있는 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="orion">
+          <span class="story-code">WINTER 01</span>
+          <strong>오리온자리</strong>
+          <span class="story-subtitle">사냥꾼 오리온</span>
+          <p>세 개의 허리띠 별이 돋보이는 겨울철 대표 별자리</p>
+        </button>
+
+        <button class="story-card" type="button" data-story="canisMajor">
+          <span class="story-code">WINTER 02</span>
+          <strong>큰개자리</strong>
+          <span class="story-subtitle">시리우스가 빛나는 별자리</span>
+          <p>밤하늘에서 가장 밝은 별 시리우스가 있는 겨울 별자리</p>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="storyModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-story-modal></div>
+
+    <section class="modal-panel story-modal-panel" role="dialog" aria-modal="true" aria-labelledby="storyModalTitle" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="팝업 닫기" data-close-story-modal>&times;</button>
+
+      <p class="modal-season" id="storyModalCode"></p>
+      <h2 id="storyModalTitle"></h2>
+
+      <div class="story-modal-body">
+        <div class="story-modal-image">
+          <span class="window-label">Observation Window</span>
+          <img id="storyModalImage" src="" alt="">
+        </div>
+
+        <div class="story-modal-text">
+          <h3>신화 이야기</h3>
+          <p id="storyModalMyth"></p>
+
+          <h3>관측 정보</h3>
+          <ul id="storyModalInfo"></ul>
+
+          <h3>핵심 의미</h3>
+          <p id="storyModalMeaning"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/story.js" defer></script>
+</body>
+</html>
