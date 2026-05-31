@@ -1,0 +1,643 @@
+/* ===== 팀 공통  ===== */
+
+/* 컬러 변수 */
+:root {
+  --bg: #020616;
+  --bg-deep: #030a22;
+  --panel: rgba(3, 18, 43, 0.78);
+  --panel-strong: rgba(5, 29, 58, 0.9);
+  --cyan: #50f4ff;
+  --cyan-soft: rgba(80, 244, 255, 0.2);
+  --blue: #1266ff;
+  --blue-soft: rgba(18, 102, 255, 0.28);
+  --white: #f7fbff;
+  --text: #eef8ff;
+  --text-muted: #b8c7d8;
+  --line: rgba(80, 244, 255, 0.42);
+  --line-muted: rgba(184, 199, 216, 0.22);
+  --panel-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 8px;
+}
+
+/* 기본 초기화 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* body 우주 배경 */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Noto Sans KR", "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(2, 6, 22, 0.1), rgba(2, 6, 22, 0.95)),
+    radial-gradient(circle at 73% 17%, rgba(80, 244, 255, 0.24), transparent 22rem),
+    radial-gradient(circle at 18% 70%, rgba(18, 102, 255, 0.3), transparent 30rem),
+    radial-gradient(circle at 50% 105%, rgba(80, 244, 255, 0.12), transparent 24rem),
+    linear-gradient(135deg, #040813 0%, #061b3e 45%, #030712 100%);
+  overflow-x: hidden;
+}
+
+/* 별/격자/HUD 장식 레이어 */
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle, rgba(247, 251, 255, 0.95) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(80, 244, 255, 0.75) 0 1px, transparent 1.5px),
+    linear-gradient(rgba(80, 244, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 244, 255, 0.08) 1px, transparent 1px);
+  background-position: 0 0, 32px 44px, 0 0, 0 0;
+  background-size: 92px 92px, 146px 146px, 48px 48px, 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.35));
+  opacity: 0.62;
+}
+
+body::after {
+  background:
+    linear-gradient(115deg, transparent 0 62%, rgba(80, 244, 255, 0.14) 62.2% 62.7%, transparent 63%),
+    linear-gradient(35deg, transparent 0 18%, rgba(80, 244, 255, 0.1) 18.2% 18.7%, transparent 19%),
+    radial-gradient(circle at 80% 24%, transparent 0 6.7rem, rgba(80, 244, 255, 0.5) 6.74rem 6.82rem, transparent 6.9rem),
+    radial-gradient(circle at 80% 24%, transparent 0 4.4rem, rgba(80, 244, 255, 0.32) 4.45rem 4.54rem, transparent 4.62rem),
+    radial-gradient(circle at 20% 78%, transparent 0 5.8rem, rgba(80, 244, 255, 0.34) 5.86rem 5.95rem, transparent 6.04rem);
+  opacity: 0.36;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* 헤더 / 로고 / 네비게이션 */
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 84px;
+  padding: 0 36px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(1, 6, 18, 0.92), rgba(4, 19, 42, 0.84));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  min-width: 124px;
+  padding: 0.52rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, rgba(80, 244, 255, 0.18), rgba(18, 102, 255, 0.12)),
+    rgba(4, 21, 47, 0.76);
+  box-shadow: inset 0 0 16px rgba(80, 244, 255, 0.14), 0 0 18px rgba(80, 244, 255, 0.12);
+  color: var(--white);
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 1.16rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(80, 244, 255, 0.95),
+    0 0 28px rgba(18, 102, 255, 0.72);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--line-muted);
+  border-radius: var(--radius-md);
+  background: rgba(5, 29, 58, 0.56);
+}
+
+.nav-link {
+  min-width: 66px;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 700;
+  transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.is-current {
+  color: var(--white);
+  background: rgba(80, 244, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(80, 244, 255, 0.24);
+}
+
+/* ===== 팀 공통 끝 ===== */
+
+
+/* ===== 운세 페이지 전용  ===== */
+
+/* main 컨테이너  */
+main {
+  width: min(1260px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 122px 0 68px;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+/* 페이지 타이틀 */
+.title-area {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 28px 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, rgba(80, 244, 255, 0.12), transparent 35%),
+    linear-gradient(165deg, var(--panel-strong), rgba(2, 8, 25, 0.92));
+  box-shadow: var(--panel-shadow), inset 0 0 34px rgba(80, 244, 255, 0.08);
+  text-align: center;
+  overflow: hidden;
+}
+
+.title-tag {
+  margin: 0 0 0.6rem;
+  color: var(--cyan);
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title-en {
+  margin: 0 0 0.6rem;
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  text-shadow:
+    0 0 14px rgba(80, 244, 255, 0.65),
+    0 0 28px rgba(18, 102, 255, 0.4);
+}
+
+.title-kr {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* 메인 컨텐츠 (2열 그리드) */
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* 카드 (입력 폼 / 결과 출력 공통) */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, rgba(80, 244, 255, 0.12), transparent 35%),
+    linear-gradient(165deg, var(--panel-strong), rgba(2, 8, 25, 0.92));
+  box-shadow: var(--panel-shadow), inset 0 0 34px rgba(80, 244, 255, 0.08);
+  overflow: hidden;
+}
+
+/* 카드 안쪽 보조 테두리 */
+.card::before {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(80, 244, 255, 0.18);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.card-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line-muted);
+}
+
+.card-num {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1;
+}
+
+.card-title-en {
+  margin: 0 0 4px;
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+
+.card-title-kr {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* 입력 폼 */
+.form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.field .optional {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: "Noto Sans KR", sans-serif;
+  letter-spacing: 0;
+}
+
+.field input {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  color: var(--white);
+  background: rgba(2, 8, 25, 0.6);
+  border: 1px solid var(--line-muted);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.field input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-soft);
+}
+
+.field input[type="date"] {
+  color-scheme: dark;
+}
+
+.submit-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  margin-top: 6px;
+  padding: 0 1.2rem;
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #03101c;
+  background: linear-gradient(135deg, var(--cyan), #86fbff);
+  border: 1px solid rgba(80, 244, 255, 0.38);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+}
+
+.submit-btn:hover,
+.submit-btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(80, 244, 255, 0.45);
+}
+
+.submit-btn .arrow {
+  transition: transform 0.2s;
+}
+
+.submit-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* 결과 출력 */
+.result-empty {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  min-height: 320px;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 80px;
+  color: rgba(80, 244, 255, 0.35);
+  margin-bottom: 16px;
+  animation: pulse 2.5s infinite ease-in-out;
+  text-shadow: 0 0 20px rgba(80, 244, 255, 0.35);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.1); }
+}
+
+.empty-text {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* 결과 표시 영역 */
+.result-show {
+  position: relative;
+  z-index: 1;
+  display: none;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.result-card.has-result .result-empty {
+  display: none;
+}
+
+.result-card.has-result .result-show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-date {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.zodiac-symbol {
+  font-size: 90px;
+  text-align: center;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow:
+    0 0 14px rgba(255, 255, 255, 0.9),
+    0 0 28px rgba(80, 244, 255, 0.95),
+    0 0 48px rgba(18, 102, 255, 0.65);
+  animation: glow 3s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow:
+      0 0 14px rgba(255, 255, 255, 0.85),
+      0 0 26px rgba(80, 244, 255, 0.7),
+      0 0 40px rgba(18, 102, 255, 0.45);
+  }
+  50% {
+    text-shadow:
+      0 0 18px rgba(255, 255, 255, 1),
+      0 0 36px rgba(80, 244, 255, 1),
+      0 0 60px rgba(18, 102, 255, 0.8);
+  }
+}
+
+.zodiac-en {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-align: center;
+  color: var(--white);
+  margin: 0 0 4px;
+}
+
+.zodiac-kr {
+  font-size: 16px;
+  text-align: center;
+  color: var(--cyan);
+  margin: 0 0 4px;
+}
+
+.zodiac-period {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  color: var(--text-muted);
+  margin: 0 0 22px;
+}
+
+.section {
+  border: 1px solid var(--line-muted);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  background: rgba(2, 8, 25, 0.55);
+}
+
+.section-title {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+
+.fortune-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+.lucky-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.lucky-item {
+  border: 1px solid var(--line-muted);
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  text-align: center;
+  background: rgba(2, 8, 25, 0.55);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.lucky-item:hover {
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(80, 244, 255, 0.25);
+}
+
+.lucky-label {
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.lucky-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.nickname {
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+/* 푸터 */
+.footer {
+  text-align: center;
+  padding: 24px 16px 32px;
+  margin-top: 20px;
+  font-family: "Oxanium", "Noto Sans KR", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* 반응형 */
+@media (max-width: 980px) {
+  /* 팀 공통 */
+  .site-header {
+    padding: 0 16px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: auto;
+    padding: 24px 22px;
+  }
+
+  .card::before {
+    inset: 8px;
+  }
+
+  .zodiac-symbol {
+    font-size: 76px;
+  }
+
+  .zodiac-en {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 620px) {
+  /* 팀 공통 */
+  .site-header {
+    align-items: flex-start;
+    min-height: 122px;
+    padding-top: 14px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  main {
+    width: min(100% - 20px, 1260px);
+    padding-top: 152px;
+  }
+
+  .title-area {
+    padding: 22px 20px;
+  }
+
+  .title-en {
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .card {
+    padding: 22px 18px;
+  }
+
+  .lucky-grid {
+    grid-template-columns: 1fr;
+  }
+}
