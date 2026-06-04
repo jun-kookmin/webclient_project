@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>별자리 연구소 - 팀원 소개</title>
   <link rel="stylesheet" href="css/team.css">
+  <link rel="stylesheet" href="css/nav.css">
 </head>
 <body>
   <div class="stars" aria-hidden="true"></div>
@@ -13,6 +14,13 @@
       <a class="brand" href="main.html" aria-label="메인 페이지로 이동">
         <img class="brand-logo" src="images/logo.svg" alt="" aria-hidden="true">
       </a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        <span class="nav-toggle-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
 
       <nav class="nav-menu" aria-label="주요 메뉴">
         <a href="main.html">
@@ -250,6 +258,7 @@
     </main>
   </div>
 
+  <script src="js/nav.js" defer></script>
   <script src="js/team.js"></script>
 </body>
 </html>

@@ -1,18 +1,18 @@
 const QUESTION_TOTAL = 10;
 
 const constellations = [
-  { id: "orion", name: "오리온자리", image: "images/오리온자리.jpg" },
-  { id: "cassiopeia", name: "카시오페이아자리", image: "images/카시오페이아자리.jpg" },
-  { id: "pegasus", name: "페가수스자리", image: "images/페가수스자리.jpg" },
-  { id: "leo", name: "사자자리", image: "images/사자자리.jpg" },
-  { id: "cygnus", name: "백조자리", image: "images/백조자리.jpg" },
-  { id: "lyra", name: "거문고자리", image: "images/거문고자리.jpg" },
-  { id: "aquila", name: "독수리자리", image: "images/독수리자리.jpg" },
-  { id: "virgo", name: "처녀자리", image: "images/처녀자리.jpg" },
-  { id: "taurus", name: "황소자리", image: "images/황소자리.jpg" },
-  { id: "canis-major", name: "큰개자리", image: "images/큰개자리.jpg" },
-  { id: "andromeda", name: "안드로메다자리", image: "images/안드로메다자리.jpg" },
-  { id: "bootes", name: "목동자리", image: "images/목동자리.jpg" }
+  { id: "aries", name: "양자리", image: "images/star/aries.svg" },
+  { id: "taurus", name: "황소자리", image: "images/star/taurus.svg" },
+  { id: "gemini", name: "쌍둥이자리", image: "images/star/gemini.svg" },
+  { id: "cancer", name: "게자리", image: "images/star/cancer.svg" },
+  { id: "leo", name: "사자자리", image: "images/star/leo.svg" },
+  { id: "virgo", name: "처녀자리", image: "images/star/virgo.svg" },
+  { id: "libra", name: "천칭자리", image: "images/star/libra.svg" },
+  { id: "scorpio", name: "전갈자리", image: "images/star/scorpio.svg" },
+  { id: "sagittarius", name: "사수자리", image: "images/star/sagittarius.svg" },
+  { id: "capricorn", name: "염소자리", image: "images/star/capricorn.svg" },
+  { id: "aquarius", name: "물병자리", image: "images/star/aquarius.svg" },
+  { id: "pisces", name: "물고기자리", image: "images/star/pisces.svg" }
 ];
 
 const gameState = {

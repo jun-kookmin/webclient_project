@@ -1,0 +1,146 @@
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle-bars {
+  display: grid;
+  gap: 6px;
+  width: 28px;
+}
+
+.nav-toggle-bars span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: #715cff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid #715cff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    align-items: center;
+    flex-direction: row;
+    min-height: 72px;
+    padding: 10px 16px;
+    border-bottom-color: rgba(118, 222, 255, 0.22);
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .main-page-body .site-header,
+  .game-page-body .site-header {
+    border-bottom-color: rgba(80, 244, 255, 0.34);
+    background:
+      linear-gradient(90deg, rgba(1, 5, 17, 0.94), rgba(5, 18, 43, 0.76) 44%, rgba(1, 5, 17, 0.94)),
+      linear-gradient(180deg, rgba(13, 35, 70, 0.42), rgba(1, 5, 17, 0.88)),
+      url("../images/navbackground.svg") center 45% / cover no-repeat !important;
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, 0.28),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(14px) saturate(1.14) !important;
+  }
+
+  .top-bar {
+    position: relative;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    border-bottom-color: rgba(118, 222, 255, 0.22);
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .site-header .nav-toggle,
+  .top-bar .nav-toggle {
+    position: relative;
+    z-index: 80;
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .site-header .main-nav,
+  .top-bar .nav-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    left: 16px;
+    z-index: 60;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-height: min(420px, calc(100vh - 96px));
+    padding: 12px;
+    border: 1px solid rgba(118, 222, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(1, 5, 17, 0.34);
+    backdrop-filter: blur(8px) saturate(1.08);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    overflow-y: auto;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    visibility: hidden;
+  }
+
+  .site-header.is-nav-open .main-nav,
+  .top-bar.is-nav-open .nav-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .site-header .nav-link,
+  .top-bar .nav-menu a {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    text-align: left;
+  }
+
+  .site-header.is-nav-open .nav-toggle-bars span:nth-child(1),
+  .top-bar.is-nav-open .nav-toggle-bars span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .site-header.is-nav-open .nav-toggle-bars span:nth-child(2),
+  .top-bar.is-nav-open .nav-toggle-bars span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header.is-nav-open .nav-toggle-bars span:nth-child(3),
+  .top-bar.is-nav-open .nav-toggle-bars span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header .nav-toggle,
+  .top-bar .nav-toggle {
+    position: fixed;
+    top: 12px;
+    left: min(calc(100vw - 64px), 326px);
+    margin-left: 0;
+  }
+}

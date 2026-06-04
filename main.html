@@ -10,6 +10,7 @@
   <title>밤하늘 계절 별자리</title>
   <!-- 이 HTML의 모든 디자인은 css/main.css에서 담당합니다. -->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
 </head>
 <body class="main-page-body">
   <!-- site-header: 화면 상단에 고정되는 로고와 메뉴 영역입니다. CSS에서 fixed로 고정합니다. -->
@@ -18,6 +19,14 @@
     <a class="logo" href="main.html" aria-label="메인 페이지로 이동">
       <img src="images/logo.svg" alt="" aria-hidden="true">
     </a>
+
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
 
     <!-- main-nav: 주요 페이지 이동 링크 묶음입니다. aria-label로 메뉴의 용도를 설명합니다. -->
     <nav class="main-nav" aria-label="주요 메뉴">
@@ -245,6 +254,7 @@
   </div>
 
   <!-- defer: HTML 요소를 먼저 만든 뒤 JS를 실행해서 querySelector가 요소를 찾을 수 있게 합니다. -->
+  <script src="js/nav.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
