@@ -44,13 +44,16 @@
 }
 
 .game-page-body .site-header {
-  border-bottom-color: rgba(211, 246, 250, 0.28);
+  border-bottom-color: rgba(80, 244, 255, 0.34);
   background:
-    linear-gradient(180deg, rgba(247, 252, 253, 0.62), rgba(234, 242, 244, 0.42)),
-    rgba(248, 252, 253, 0.38);
-  color: var(--ship-ink);
-  backdrop-filter: blur(18px) saturate(1.12);
-  box-shadow: 0 14px 34px rgba(2, 9, 17, 0.12);
+    linear-gradient(90deg, rgba(1, 5, 17, 0.94), rgba(5, 18, 43, 0.76) 44%, rgba(1, 5, 17, 0.94)),
+    linear-gradient(180deg, rgba(13, 35, 70, 0.42), rgba(1, 5, 17, 0.88)),
+    url("../images/navbackground.svg") center 45% / cover no-repeat;
+  color: var(--white);
+  backdrop-filter: blur(18px) saturate(1.18);
+  box-shadow:
+    0 14px 34px rgba(2, 9, 17, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .game-page-body .logo {
@@ -58,19 +61,21 @@
 }
 
 .game-page-body .main-nav {
-  border-color: rgba(13, 62, 83, 0.14);
-  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(118, 222, 255, 0.22);
+  background:
+    linear-gradient(180deg, rgba(1, 8, 25, 0.28), rgba(1, 5, 17, 0.64)),
+    url("../images/navbackground.svg") right 38% / cover no-repeat;
 }
 
 .game-page-body .nav-link {
-  color: #395062;
+  color: rgba(222, 241, 255, 0.78);
 }
 
 .game-page-body .nav-link:hover,
 .game-page-body .nav-link:focus-visible,
 .game-page-body .nav-link.is-current {
-  color: #051421;
-  background: rgba(80, 244, 255, 0.24);
+  color: var(--white);
+  background: rgba(80, 244, 255, 0.18);
 }
 
 .game-main {

@@ -56,8 +56,18 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 24px;
+  margin: 0 -32px;
   min-height: 84px;
-  border-bottom: 1px solid rgba(202, 207, 255, 0.28);
+  padding: 0 32px;
+  border-bottom: 1px solid rgba(145, 217, 255, 0.3);
+  border-radius: 7px 7px 0 0;
+  background:
+    linear-gradient(90deg, rgba(1, 5, 17, 0.92), rgba(11, 20, 52, 0.72) 48%, rgba(1, 5, 17, 0.92)),
+    linear-gradient(180deg, rgba(16, 33, 76, 0.42), rgba(1, 4, 12, 0.88)),
+    url("../images/navbackground.svg") center 43% / cover no-repeat;
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 30px rgba(0, 0, 0, 0.22);
 }
 
 .brand {
@@ -110,8 +120,11 @@ body {
   color: var(--text);
   text-align: center;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+  background:
+    linear-gradient(180deg, rgba(3, 11, 30, 0.3), rgba(2, 5, 17, 0.72)),
+    url("../images/navbackground.svg") center 42% / cover no-repeat;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .nav-icon {
@@ -129,9 +142,12 @@ body {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  border-color: var(--accent);
-  color: #ebe6ff;
-  box-shadow: 0 0 18px rgba(184, 168, 255, 0.22);
+  border-color: rgba(145, 217, 255, 0.68);
+  color: #f6fbff;
+  background-color: rgba(80, 244, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(145, 217, 255, 0.2);
 }
 
 .nav-menu a.active .nav-icon {
@@ -397,12 +413,16 @@ dd {
 
   .top-bar {
     align-items: flex-start;
+    margin: 0;
     padding: 18px 0;
   }
 
   .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     justify-content: flex-start;
+    gap: 10px;
   }
 
   .hero-grid {
@@ -425,6 +445,11 @@ dd {
     font-size: 19px;
   }
 
+  .top-bar {
+    margin: 0;
+    padding: 16px 0;
+  }
+
   .brand-mark {
     width: 38px;
     height: 38px;
@@ -432,10 +457,15 @@ dd {
 
   .nav-menu a {
     min-width: 0;
-    flex: 1 1 30%;
+    width: 100%;
+    flex: none;
     gap: 8px;
     padding: 11px 8px;
     font-size: 14px;
+  }
+
+  .nav-menu a:last-child {
+    grid-column: 1 / -1;
   }
 
   .nav-icon {
@@ -487,6 +517,12 @@ dd {
 
   .nav-menu {
     gap: 8px;
+  }
+
+  .top-bar {
+    margin: 0;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .nav-menu a {
