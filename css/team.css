@@ -71,6 +71,13 @@ body {
   white-space: nowrap;
 }
 
+.brand-logo {
+  display: block;
+  width: 132px;
+  height: 52px;
+  object-fit: contain;
+}
+
 .brand-mark {
   display: grid;
   width: 44px;

@@ -11,11 +11,13 @@
   <!-- 이 HTML의 모든 디자인은 css/main.css에서 담당합니다. -->
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body class="main-page-body">
   <!-- site-header: 화면 상단에 고정되는 로고와 메뉴 영역입니다. CSS에서 fixed로 고정합니다. -->
   <header class="site-header">
     <!-- logo: 메인 페이지로 돌아가는 링크입니다. aria-label은 화면낭독기용 설명입니다. -->
-    <a class="logo" href="main.html" aria-label="메인 페이지로 이동">ZODIAC</a>
+    <a class="logo" href="main.html" aria-label="메인 페이지로 이동">
+      <img src="images/logo.svg" alt="" aria-hidden="true">
+    </a>
 
     <!-- main-nav: 주요 페이지 이동 링크 묶음입니다. aria-label로 메뉴의 용도를 설명합니다. -->
     <nav class="main-nav" aria-label="주요 메뉴">
@@ -37,10 +39,11 @@
         <!-- eyebrow: 제목 위에 붙는 작은 보조 문구입니다. -->
         <p class="eyebrow">Seasonal Constellation Guide</p>
         <!-- pageTitle: hero 섹션의 실제 제목입니다. -->
-        <h1 id="pageTitle">우주 관측실에서 만나는 계절 별자리</h1>
+        <h1 id="pageTitle">우주 관측실에서 만나는<br>계절 별자리</h1>
         <!-- hero-text: 페이지의 목적을 짧게 설명하는 본문입니다. -->
         <p class="hero-text">
-          ZODIAC에 오신 것을 환영합니다. 계절 카드를 따라 밤하늘의 대표 별자리를 살펴보고,
+          ZODIAC에 오신 것을 환영합니다.<br>
+          계절 카드를 따라 밤하늘의 대표 별자리를 살펴보고,<br>
           별빛 속에 담긴 신화와 이야기를 천천히 탐험해보세요.
         </p>
         <!-- hero-actions: 버튼처럼 보이는 페이지 이동 링크들을 한 줄 또는 여러 줄로 배치합니다. -->
@@ -51,10 +54,12 @@
         </div>
       </div>
 
-      <!-- hero-visual: 오른쪽 밤하늘 이미지 위에 미리 만들어 둔 별자리 div를 겹쳐 보여주는 영역입니다. -->
+      <!-- hero-visual: 뒤 배경이 비치는 투명 관측창입니다. -->
       <figure class="hero-visual">
-        <!-- heroImage: 고정 배경 이미지입니다. -->
-        <img id="heroImage" src="images/background_space.jpg">
+        <!-- heroImage: 기존 구조 호환용 이미지입니다. 메인에서는 CSS로 숨깁니다. -->
+        <img id="heroImage" src="images/background_space.jpg" alt="" aria-hidden="true">
+        <img class="hero-star-image" id="heroStarImage" src="images/star/aries.svg" alt="양자리 별자리 그림">
+        <div class="hero-zodiac-layer" id="heroZodiacLayer" aria-hidden="true"></div>
 
         <!--
           constellation-layer:
@@ -182,8 +187,8 @@
     <section class="season-section" id="season-section" aria-labelledby="seasonTitle">
       <!-- section-heading: 계절 카드 영역의 보조 문구와 제목을 묶습니다. -->
       <div class="section-heading">
-        <p class="eyebrow">Four Seasons</p>
-        <h2 id="seasonTitle">계절별 대표 별자리</h2>
+        <p class="eyebrow">Zodiac Signs</p>
+        <h2 id="seasonTitle">황도 12궁 대표 별자리</h2>
       </div>
 
       <!-- season-grid: 계절 카드들을 CSS grid로 배치합니다. 화면 폭에 따라 4열, 2열, 1열로 바뀝니다. -->
@@ -194,29 +199,29 @@
         -->
         <button class="season-card spring" type="button" data-season="spring">
           <span class="season-name">봄</span>
-          <strong>사자자리</strong>
-          <span class="season-note">맑은 봄밤 남쪽 하늘에서 찾기 쉬운 대표 별자리</span>
+          <strong>황소자리</strong>
+          <span class="season-note">알데바란과 플레이아데스가 돋보이는 봄 황도 별자리</span>
           <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card summer" type="button" data-season="summer">
           <span class="season-name">여름</span>
-          <strong>백조자리</strong>
-          <span class="season-note">은하수 근처에서 십자 형태로 빛나는 여름 별자리</span>
+          <strong>사자자리</strong>
+          <span class="season-note">밝은 별 레굴루스를 기준으로 찾는 여름 황도 별자리</span>
           <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card autumn" type="button" data-season="autumn">
           <span class="season-name">가을</span>
-          <strong>페가수스자리</strong>
-          <span class="season-note">가을철 대사각형으로 밤하늘 방향을 잡는 별자리</span>
+          <strong>천칭자리</strong>
+          <span class="season-note">균형과 질서를 상징하는 가을 황도 별자리</span>
           <span class="season-action">자세히 보기</span>
         </button>
 
         <button class="season-card winter" type="button" data-season="winter">
           <span class="season-name">겨울</span>
-          <strong>오리온자리</strong>
-          <span class="season-note">밝은 별과 허리띠가 돋보이는 겨울 대표 별자리</span>
+          <strong>물고기자리</strong>
+          <span class="season-note">두 마리 물고기의 이미지로 이어지는 겨울 황도 별자리</span>
           <span class="season-action">자세히 보기</span>
         </button>
       </div>
