@@ -461,8 +461,6 @@ h1 {
     saturate(1.05)
     drop-shadow(0 0 8px rgba(255, 255, 255, 0.42))
     drop-shadow(0 0 18px rgba(80, 244, 255, 0.38));
-  transform: scale(1.04);
-  transform-origin: center;
   pointer-events: none;
 }
 
