@@ -561,4 +561,16 @@ h1 {
   .season-grid {
     grid-template-columns: 1fr;
   }
+/*모달 화면에서 스크롤 가능하게*/
+  .modal {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 14px;
+  }
+
+  .modal-panel {
+    max-height: calc(100vh - 28px);
+    overflow-y: auto;
+    padding: 22px;
+  }
 }
