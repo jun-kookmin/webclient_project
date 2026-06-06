@@ -9,6 +9,25 @@
 </head>
 <body>
   <div class="stars" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="logo" href="main.html" aria-label="Main page">
+      <img src="images/logo.svg" alt="" aria-hidden="true">
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+    <nav class="main-nav" aria-label="Main menu">
+      <a class="nav-link" href="main.html">메인</a>
+      <a class="nav-link" href="story.html">신화</a>
+      <a class="nav-link" href="game.html">게임</a>
+      <a class="nav-link" href="form.html">운세</a>
+      <a class="nav-link is-current" href="team.html" aria-current="page">팀원</a>
+    </nav>
+  </header>
   <div class="page-shell">
     <header class="top-bar">
       <a class="brand" href="main.html" aria-label="메인 페이지로 이동">
@@ -91,27 +110,27 @@
             <div class="ship-body">
               <button class="seat is-selected" type="button" data-member="0">
                 <span class="seat-number">01</span>
-                <span class="avatar-icon"></span>
+                <img class="avatar-img" src="team_images/01.jpg" alt="안하현">
                 <span class="seat-role">안하현</span>
               </button>
               <button class="seat" type="button" data-member="1">
                 <span class="seat-number">02</span>
-                <span class="avatar-icon"></span>
+                <img class="avatar-img" src="team_images/02.png" alt="배경준">
                 <span class="seat-role">배경준</span>
               </button>
               <button class="seat" type="button" data-member="2">
                 <span class="seat-number">03</span>
-                <span class="avatar-icon"></span>
+                <img class="avatar-img" src="team_images/03.png" alt="이준원">
                 <span class="seat-role">이준원</span>
               </button>
               <button class="seat" type="button" data-member="3">
                 <span class="seat-number">04</span>
-                <span class="avatar-icon"></span>
+                <img class="avatar-img" src="team_images/04.png" alt="양상훈">
                 <span class="seat-role">양상훈</span>
               </button>
               <button class="seat" type="button" data-member="4">
                 <span class="seat-number">05</span>
-                <span class="avatar-icon"></span>
+                <img class="avatar-img" src="team_images/05.png" alt="손채현">
                 <span class="seat-role">손채현</span>
               </button>
             </div>
