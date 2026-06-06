@@ -1,4 +1,76 @@
 
+html {
+  overflow-y: scroll;
+}
+
+/* PC 기본 배경 */
+html body.form-page {
+  background:
+    linear-gradient(180deg, rgba(2, 6, 20, 0.18), rgba(2, 6, 20, 0.88)),
+    url("../images/background2.png") center top / cover fixed no-repeat,
+    #020616 !important;
+}
+
+html body.form-page::before {
+  opacity: 0.06 !important;
+}
+
+html body.form-page::after {
+  opacity: 0.04 !important;
+}
+
+body.form-page main {
+  padding-top: 175px;
+}
+
+body.form-page .site-header {
+  border-bottom-color: rgba(80, 244, 255, 0.34);
+  background:
+    linear-gradient(90deg, rgba(1, 5, 17, 0.94), rgba(5, 18, 43, 0.76) 44%, rgba(1, 5, 17, 0.94)),
+    linear-gradient(180deg, rgba(13, 35, 70, 0.42), rgba(1, 5, 17, 0.88)),
+    url("../images/navbackground.svg") center 45% / cover no-repeat;
+  backdrop-filter: blur(18px) saturate(1.18);
+  box-shadow:
+    0 14px 34px rgba(2, 9, 17, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body.form-page .main-nav {
+  border-color: rgba(118, 222, 255, 0.22);
+  background:
+    linear-gradient(180deg, rgba(1, 8, 25, 0.28), rgba(1, 5, 17, 0.64)),
+    url("../images/navbackground.svg") right 38% / cover no-repeat;
+}
+
+body.form-page .nav-link {
+  color: rgba(222, 241, 255, 0.78);
+}
+
+body.form-page .nav-link:hover,
+body.form-page .nav-link:focus-visible,
+body.form-page .nav-link.is-current {
+  color: var(--white);
+  background: rgba(80, 244, 255, 0.18);
+}
+
+/* 모바일 배경 */
+@media (max-width: 620px) {
+  html body.form-page {
+    background:
+      linear-gradient(180deg, rgba(2, 6, 20, 0.2), rgba(2, 6, 20, 0.9)),
+      url("../images/background2_mobile.png") center top / cover fixed no-repeat,
+      #020616 !important;
+  }
+
+  html body.form-page::before {
+    opacity: 0.03 !important;
+  }
+
+  html body.form-page::after {
+    opacity: 0.02 !important;
+  }
+}
+
 /* 페이지 타이틀 */
 .title-area {
   position: relative;
