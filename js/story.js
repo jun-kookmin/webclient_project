@@ -96,7 +96,7 @@ const storyData = {
     meaning: "물고기자리는 연결, 상상력, 감수성을 상징합니다."
   },
 
-    bootes: {
+  bootes: {
     code: "SPRING 01",
     name: "목동자리",
     image: "images/목동자리.jpg",
@@ -104,7 +104,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 봄", "대표 별: 아크투루스"],
     meaning: "목동자리는 밤하늘의 길잡이, 관측의 시작, 별을 따라 방향을 찾는 사람의 이미지를 상징합니다."
   },
-
   lyra: {
     code: "SUMMER 01",
     name: "거문고자리",
@@ -113,7 +112,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 여름", "대표 별: 베가"],
     meaning: "거문고자리는 예술, 감성, 음악, 그리고 별빛처럼 오래 남는 이야기를 상징합니다."
   },
-
   aquila: {
     code: "SUMMER 02",
     name: "독수리자리",
@@ -122,7 +120,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 여름", "대표 별: 알타이르"],
     meaning: "독수리자리는 힘, 속도, 높은 곳을 향한 비상, 신의 전령 같은 이미지를 상징합니다."
   },
-
   cygnus: {
     code: "SUMMER 03",
     name: "백조자리",
@@ -131,7 +128,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 여름", "대표 별: 데네브"],
     meaning: "백조자리는 변신, 자유, 하늘을 가로지르는 이동, 신비로운 아름다움을 상징합니다."
   },
-
   andromeda: {
     code: "AUTUMN 01",
     name: "안드로메다자리",
@@ -140,7 +136,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 가을", "관련 별자리: 페가수스자리, 카시오페이아자리"],
     meaning: "안드로메다자리는 위기, 구원, 희생, 그리고 여러 별자리가 하나의 이야기로 연결되는 구조를 상징합니다."
   },
-
   pegasus: {
     code: "AUTUMN 02",
     name: "페가수스자리",
@@ -149,7 +144,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 가을", "특징: 가을철 대사각형"],
     meaning: "페가수스자리는 상상력, 도약, 자유, 하늘을 향한 탐험을 상징합니다."
   },
-
   cassiopeia: {
     code: "AUTUMN 03",
     name: "카시오페이아자리",
@@ -158,7 +152,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 가을", "특징: W자 또는 M자 모양"],
     meaning: "카시오페이아자리는 아름다움, 자만, 그리고 겸손의 필요성을 상징합니다."
   },
-
   orion: {
     code: "WINTER 01",
     name: "오리온자리",
@@ -167,7 +160,6 @@ const storyData = {
     info: ["구분: 계절 별자리", "계절: 겨울", "대표 별: 베텔게우스, 리겔"],
     meaning: "오리온자리는 자신감, 도전, 강한 존재감, 그리고 지나친 자만에 대한 경계를 상징합니다."
   },
-
   canisMajor: {
     code: "WINTER 02",
     name: "큰개자리",
@@ -209,12 +201,23 @@ function openStoryModal(story) {
 
   storyModal.classList.add("is-open");
   storyModal.setAttribute("aria-hidden", "false");
+
+  /* 배경 페이지 스크롤 방지 */
+  document.body.classList.add("modal-open");
+
+  /* 모달 열 때 항상 맨 위부터 보이게 초기화 */
+  storyModal.scrollTop = 0;
+  storyModalPanel.scrollTop = 0;
+
   storyModalPanel.focus();
 }
 
 function closeStoryModal() {
   storyModal.classList.remove("is-open");
   storyModal.setAttribute("aria-hidden", "true");
+
+  /* 배경 페이지 스크롤 다시 허용 */
+  document.body.classList.remove("modal-open");
 
   if (lastStoryCard) {
     lastStoryCard.focus();
