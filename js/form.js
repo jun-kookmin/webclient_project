@@ -382,6 +382,11 @@ function renderResult(zodiac, nickname) {
 }
 
 // 폼 submit 이벤트
+const birthdateInput = document.querySelector('#birthdate');
+birthdateInput.addEventListener('click', function () {
+  try { this.showPicker(); } catch (e) {}
+});
+
 const form = document.querySelector('#zodiacForm');
 
 form.addEventListener('submit', function(event) {
