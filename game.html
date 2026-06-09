@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>별자리 맞추기 게임 | ZODIAC</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="stylesheet" href="css/nav.css">
+</head>
+<body class="game-page-body">
+  <div class="game-shell">
+    <header class="site-header">
+      <a class="logo" href="main.html" aria-label="메인 페이지로 이동">
+        <img src="images/logo.svg" alt="" aria-hidden="true">
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        <span class="nav-toggle-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a class="nav-link" href="main.html">메인</a>
+        <a class="nav-link" href="story.html">신화</a>
+        <a class="nav-link is-current" href="game.html" aria-current="page">게임</a>
+        <a class="nav-link" href="form.html">운세</a>
+        <a class="nav-link" href="team.html">팀원</a>
+      </nav>
+    </header>
+
+    <main class="game-main">
+      <section class="game-layout" aria-label="별자리 맞추기 게임">
+        <aside class="hud-panel guide-panel">
+          <div class="panel-rule" aria-hidden="true"></div>
+          <div class="panel-title">
+            <span aria-hidden="true">✦</span>
+            <h1>별자리 맞추기 게임</h1>
+            <span aria-hidden="true">✦</span>
+          </div>
+          <p class="guide-copy">별자리의 모양을 보고 알맞은 이름을 선택해 보세요!</p>
+
+          <section class="guide-section" aria-labelledby="howToPlayTitle">
+            <h2 id="howToPlayTitle"><span aria-hidden="true">▤</span> 게임 방법</h2>
+            <ol class="step-list">
+              <li><span>1</span><p>화면에 별자리의 모양이 나타납니다.</p></li>
+              <li><span>2</span><p>보기 중에서 알맞은 별자리 이름을 선택하세요.</p></li>
+              <li><span>3</span><p>모든 문제를 맞추면 게임이 완료됩니다.</p></li>
+            </ol>
+          </section>
+
+          <section class="guide-section" aria-labelledby="difficultyTitle">
+            <h2 id="difficultyTitle"><span aria-hidden="true">◈</span> 난이도 선택</h2>
+            <div class="difficulty-row" role="group" aria-label="난이도 선택">
+              <button class="difficulty-btn is-active" type="button" data-difficulty="easy">쉬움</button>
+              <button class="difficulty-btn" type="button" data-difficulty="normal">보통</button>
+              <button class="difficulty-btn" type="button" data-difficulty="hard">어려움</button>
+            </div>
+          </section>
+
+          <button class="start-btn" id="startGame" type="button">
+            <span>게임 시작하기</span>
+            <span aria-hidden="true">▷</span>
+          </button>
+        </aside>
+
+        <section class="game-center" aria-label="문제 영역">
+          <div class="question-chip">문제 <span id="questionNow">1</span> / <span id="questionTotal">10</span></div>
+          <div class="game-window" id="gameWindow">
+            <span class="scan-mark scan-left" aria-hidden="true"></span>
+            <span class="scan-mark scan-right" aria-hidden="true"></span>
+            <div class="constellation-visual" id="gameVisual" role="img" aria-label="별자리 문제 이미지"></div>
+          </div>
+          <div class="answer-grid" id="answerGrid" aria-label="정답 보기"></div>
+        </section>
+
+        <aside class="hud-panel status-panel" aria-label="게임 상태">
+          <section class="metric-card score-card">
+            <div class="metric-heading">
+              <span class="metric-icon" aria-hidden="true">⊙</span>
+              <h2>점수</h2>
+            </div>
+            <strong><span id="scoreValue">0</span> <small>/ 100</small></strong>
+            <div class="score-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          </section>
+
+          <section class="metric-card">
+            <div class="metric-heading">
+              <span class="metric-icon" aria-hidden="true">◷</span>
+              <h2>시간</h2>
+            </div>
+            <strong id="timerValue">00:00</strong>
+            <div class="timer-ring" aria-hidden="true"></div>
+          </section>
+
+          <section class="metric-card hint-card">
+            <div class="metric-heading">
+              <span class="metric-icon" aria-hidden="true">☼</span>
+              <h2>힌트</h2>
+              <span class="hint-badge" id="hintCount">3</span>
+            </div>
+            <p>힌트를 사용하면 정답이 아닌 보기를 하나 제거할 수 있어요!</p>
+            <button class="hint-btn" id="hintButton" type="button">힌트 사용하기</button>
+          </section>
+
+          <a class="exit-btn" href="main.html">
+            <span>게임 나가기</span>
+            <span aria-hidden="true">↩</span>
+          </a>
+        </aside>
+      </section>
+
+      <section class="game-console" aria-label="게임 안내">
+        <div class="console-radar" aria-hidden="true"><span></span></div>
+        <div class="tip-bar">
+          <strong>TIP</strong>
+          <span id="gameMessage" aria-live="polite">별자리는 시대와 지역에 따라 다르게 보일 수 있어요. 재미있게 도전해 보세요!</span>
+        </div>
+        <div class="console-controls" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/game.js" defer></script>
+</body>
+</html>
