@@ -63,19 +63,18 @@
         </div>
       </div>
 
-      <!-- hero-visual: 뒤 배경이 비치는 투명 관측창입니다. -->
+      <!-- hero-visual: 메인 브랜치처럼 밤하늘 이미지 위에 JS가 별과 선을 그리는 관측창입니다. -->
       <figure class="hero-visual">
-        <!-- heroImage: 기존 구조 호환용 이미지입니다. 메인에서는 CSS로 숨깁니다. -->
-        <img id="heroImage" src="images/background_space.jpg" alt="" aria-hidden="true">
-        <img class="hero-star-image" id="heroStarImage" src="images/star/aries.svg" alt="양자리 별자리 그림">
-        <div class="hero-zodiac-layer" id="heroZodiacLayer" aria-hidden="true"></div>
+        <!-- heroImage: 메인 브랜치에서 쓰는 공통 밤하늘 배경 이미지입니다. -->
+        <img id="heroImage" src="images/background_space.jpg" alt="푸른 성운과 별이 가득한 우주">
 
         <!--
           constellation-layer:
-          별과 선을 JS로 계산해서 만들지 않고, HTML에 div로 미리 찍어둔 영역입니다.
-          JS는 hero-visual의 data-active-season 값만 바꾸고, CSS가 해당 계절 그룹만 보여줍니다.
+          별과 선을 JS가 동적으로 만들 수 있도록 메인 브랜치의 레이어 구조를 되살립니다.
         -->
-        <div class="constellation-layer">
+        <div class="constellation-layer" aria-hidden="true">
+          <div class="constellation-lines" id="constellationLines"></div>
+          <div class="constellation-stars" id="constellationStars"></div>
           <div class="constellation-group spring-stars">
             <div class="line" style="left: 24%; top: 55%; width: 18.60%; transform: rotate(-36.25deg);"></div>
             <div class="line" style="left: 39%; top: 44%; width: 5.00%; transform: rotate(0deg);"></div>
@@ -196,8 +195,8 @@
     <section class="season-section" id="season-section" aria-labelledby="seasonTitle">
       <!-- section-heading: 계절 카드 영역의 보조 문구와 제목을 묶습니다. -->
       <div class="section-heading">
-        <p class="eyebrow">Zodiac Signs</p>
-        <h2 id="seasonTitle">황도 12궁 대표 별자리</h2>
+        <p class="eyebrow">Four Seasons</p>
+        <h2 id="seasonTitle">계절별 대표 별자리</h2>
       </div>
 
       <!-- season-grid: 계절 카드들을 CSS grid로 배치합니다. 화면 폭에 따라 4열, 2열, 1열로 바뀝니다. -->
@@ -208,42 +207,38 @@
         -->
         <button class="season-card spring" type="button" data-season="spring">
           <span class="season-name">봄</span>
-          <strong>황소자리</strong>
-          <span class="season-note">알데바란과 플레이아데스가 돋보이는 봄 황도 별자리</span>
-          <span class="season-action">자세히 보기</span>
+          <strong>사자자리</strong>
+          <span class="season-note">맑은 봄밤 남쪽 하늘에서 찾기 쉬운 대표 별자리</span>
         </button>
 
         <button class="season-card summer" type="button" data-season="summer">
           <span class="season-name">여름</span>
-          <strong>사자자리</strong>
-          <span class="season-note">밝은 별 레굴루스를 기준으로 찾는 여름 황도 별자리</span>
-          <span class="season-action">자세히 보기</span>
+          <strong>백조자리</strong>
+          <span class="season-note">은하수 근처에서 십자 형태로 빛나는 여름 별자리</span>
         </button>
 
         <button class="season-card autumn" type="button" data-season="autumn">
           <span class="season-name">가을</span>
-          <strong>천칭자리</strong>
-          <span class="season-note">균형과 질서를 상징하는 가을 황도 별자리</span>
-          <span class="season-action">자세히 보기</span>
+          <strong>페가수스자리</strong>
+          <span class="season-note">가을철 대사각형으로 밤하늘 방향을 잡는 별자리</span>
         </button>
 
         <button class="season-card winter" type="button" data-season="winter">
           <span class="season-name">겨울</span>
-          <strong>물고기자리</strong>
-          <span class="season-note">두 마리 물고기의 이미지로 이어지는 겨울 황도 별자리</span>
-          <span class="season-action">자세히 보기</span>
+          <strong>오리온자리</strong>
+          <span class="season-note">밝은 별과 허리띠가 돋보이는 겨울 대표 별자리</span>
         </button>
       </div>
     </section>
   </main>
 
   <!-- modal: 계절 카드를 클릭했을 때 열리는 팝업 전체 영역입니다. 기본 상태는 CSS에서 display:none입니다. -->
-  <div class="modal" id="seasonModal">
+  <div class="modal" id="seasonModal" aria-hidden="true">
     <!-- data-close-modal: JS가 이 속성을 가진 요소에 닫기 이벤트를 붙입니다. 배경 클릭으로 닫히게 됩니다. -->
     <div class="modal-backdrop" data-close-modal></div>
 
     <!-- modal-panel: 실제 팝업 내용입니다. -->
-    <section class="modal-panel">
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <!-- modal-close: 닫기 버튼입니다. data-close-modal 덕분에 배경과 같은 닫기 함수를 씁니다. -->
       <button class="modal-close" type="button" aria-label="팝업 닫기" data-close-modal>&times;</button>
       <!-- 아래 세 요소는 JS의 openSeasonModal 함수가 선택한 계절 데이터로 채웁니다. -->
