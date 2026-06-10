@@ -1,4 +1,4 @@
-/* :root에는 사이트 전체에서 반복해서 쓰는 색상, 그림자, 둥근 모서리 값을 변수로 모아둡니다. */
+
 :root {
   --bg: #020616;
   --panel: rgba(5, 22, 49, 0.88);
@@ -15,17 +15,17 @@
   --radius-md: 8px;
 }
 
-/* 모든 요소가 padding과 border까지 포함해서 너비를 계산하게 해 레이아웃 계산을 단순하게 합니다. */
+
 * {
   box-sizing: border-box;
 }
 
-/* 내부 링크로 이동할 때 갑자기 점프하지 않고 부드럽게 스크롤되게 합니다. */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* body는 전체 배경, 기본 글꼴, 기본 글자색을 담당합니다. */
+
 body {
   min-width: 320px;
   min-height: 100vh;
@@ -75,18 +75,18 @@ body {
   opacity: 0.72;
 }
 
-/* 링크의 기본 밑줄과 파란색을 제거해서 네비게이션/버튼 디자인과 맞춥니다. */
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* 버튼도 부모의 글꼴을 그대로 쓰게 해서 a.button과 button.season-card의 글꼴이 통일됩니다. */
+
 button {
   font: inherit;
 }
 
-/* site-header는 상단 메뉴바입니다. fixed로 고정하고 main에는 이 높이만큼 padding을 줍니다. */
+
 .site-header {
   position: fixed;
   top: 0;
@@ -123,7 +123,7 @@ button {
     inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* logo는 왼쪽 이미지 로고 링크입니다. */
+
 .logo {
   display: inline-flex;
   align-items: center;
@@ -148,7 +148,7 @@ button {
   object-fit: cover;
 }
 
-/* main-nav는 nav-link들을 가로로 담는 메뉴 컨테이너입니다. */
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -171,7 +171,7 @@ button {
     url("../images/navbackground.svg") right 38% / cover no-repeat;
 }
 
-/* nav-link는 메뉴 하나의 클릭 영역입니다. min-width로 메뉴 폭이 너무 작아지지 않게 합니다. */
+
 .nav-link {
   min-width: 66px;
   padding: 0.45rem 0.65rem;
@@ -185,7 +185,7 @@ button {
   color: rgba(222, 241, 255, 0.78);
 }
 
-/* hover, focus-visible, is-current는 마우스/키보드/현재 페이지 상태를 같은 방식으로 강조합니다. */
+
 .nav-link:hover,
 .nav-link:focus-visible,
 .nav-link.is-current {
@@ -200,7 +200,7 @@ button {
   background: rgba(80, 244, 255, 0.18);
 }
 
-/* main은 고정 헤더에 가리지 않도록 위쪽 여백을 둡니다. */
+
 main {
   width: min(1260px, calc(100% - 40px));
   margin: 0 auto;
@@ -213,14 +213,14 @@ main {
   width: min(1380px, calc(100% - 40px));
 }
 
-/* 브라우저 기본 margin 중 위쪽 여백을 제거해서 섹션 간격을 CSS에서 직접 관리합니다. */
+
 h1,
 h2,
 p {
   margin-top: 0;
 }
 
-/* hero는 첫 화면을 2열 grid로 나눕니다. 왼쪽은 문구, 오른쪽은 별자리 시각화입니다. */
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.55fr);
@@ -236,7 +236,7 @@ p {
   min-height: 560px;
 }
 
-/* 여러 큰 패널이 같은 시각 스타일을 공유하도록 공통 선택자로 묶었습니다. */
+
 .hero-copy,
 .hero-visual,
 .season-card,
@@ -264,7 +264,7 @@ p {
   backdrop-filter: blur(8px) saturate(1.08);
 }
 
-/* hero-copy는 텍스트를 세로 가운데에 배치하는 왼쪽 패널입니다. */
+
 .hero-copy {
   display: flex;
   flex-direction: column;
@@ -297,7 +297,7 @@ p {
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-/* eyebrow는 섹션의 작은 영문 라벨입니다. 본문보다 작고 밝은 색으로 구분합니다. */
+
 .eyebrow {
   margin: 0 0 0.8rem;
   color: var(--cyan);
@@ -308,7 +308,7 @@ p {
   text-transform: uppercase;
 }
 
-/* h1은 첫 화면의 주제 제목입니다. clamp로 최소/최대 크기 안에서만 반응형으로 바뀝니다. */
+
 h1 {
   margin-bottom: 0.95rem;
   font-size: 2.5rem;
@@ -329,7 +329,7 @@ h1 {
   overflow-wrap: break-word;
 }
 
-/* hero-text는 제목 아래 설명 문구입니다. muted 색상과 넉넉한 줄간격으로 읽기 쉽게 합니다. */
+
 .hero-text {
   margin-bottom: 1.4rem;
   color: var(--text-muted);
@@ -348,14 +348,14 @@ h1 {
   line-height: 1.58;
 }
 
-/* hero-actions는 두 개의 이동 링크를 버튼처럼 나란히 배치합니다. 좁으면 flex-wrap으로 줄바꿈됩니다. */
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-/* button 클래스는 a 태그를 버튼처럼 보이게 하는 공통 스타일입니다. */
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -374,25 +374,25 @@ h1 {
   font-size: 0.68rem;
 }
 
-/* hover/focus에서는 위치 이동 없이 테두리만 강조해서 불필요한 장식 효과를 줄였습니다. */
+
 .button:hover,
 .button:focus-visible {
   border-color: var(--cyan);
   outline: none;
 }
 
-/* primary는 가장 중요한 이동 버튼입니다. 밝은 배경이라 글자색은 어둡게 둡니다. */
+
 .button.primary {
   color: #03101c;
   background: linear-gradient(135deg, var(--cyan), #86fbff);
 }
 
-/* secondary는 보조 이동 버튼입니다. 기존 패널 색과 비슷한 투명 배경을 씁니다. */
+
 .button.secondary {
   background: rgba(5, 29, 58, 0.62);
 }
 
-/* hero-visual은 이미지와 별자리 레이어를 겹치는 오른쪽 패널입니다. overflow로 레이어가 밖으로 새지 않게 합니다. */
+
 .hero-visual {
   min-height: 348px;
   margin: 0;
@@ -436,7 +436,7 @@ h1 {
   opacity: 0.42;
 }
 
-/* hero-visual img는 밤하늘 배경입니다. object-fit: cover로 패널을 꽉 채웁니다. */
+
 .hero-visual img {
   display: block;
   width: 100%;
@@ -446,115 +446,35 @@ h1 {
   filter: saturate(1.05) contrast(1.06) brightness(0.7);
 }
 
-.main-page-body .hero-visual > img:not(.hero-star-image) {
+.main-page-body .hero-visual > img {
   position: absolute;
   inset: 0;
   z-index: 1;
   min-height: 0;
   opacity: 0;
-  mix-blend-mode: screen;
-  filter: saturate(1.08) contrast(1.08) brightness(0.88);
+  mix-blend-mode: normal;
+  filter: saturate(1.05) contrast(1.08) brightness(0.68);
 }
 
-.main-page-body .hero-visual #heroImage {
-  display: none;
-}
 
-.main-page-body .hero-visual .hero-star-image {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
-  object-position: center;
-  opacity: 0.82;
-  mix-blend-mode: screen;
-  filter:
-    brightness(1.35)
-    contrast(1.08)
-    saturate(1.05)
-    drop-shadow(0 0 8px rgba(255, 255, 255, 0.42))
-    drop-shadow(0 0 18px rgba(80, 244, 255, 0.38));
-  pointer-events: none;
-}
-
-.main-page-body .hero-zodiac-layer {
-  display: none;
-  position: absolute;
-  inset: 13% 13% 15%;
-  z-index: 5;
-  pointer-events: none;
-  filter:
-    drop-shadow(0 0 10px rgba(255, 255, 255, 0.82))
-    drop-shadow(0 0 24px rgba(80, 244, 255, 0.7));
-}
-
-.main-page-body .hero-zodiac-line {
-  position: absolute;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(113, 241, 255, 0.96));
-  box-shadow:
-    0 0 8px rgba(255, 255, 255, 0.78),
-    0 0 18px rgba(80, 244, 255, 0.72);
-  opacity: 0.92;
-  transform-origin: left center;
-}
-
-.main-page-body .hero-zodiac-star {
-  position: absolute;
-  width: calc(11px * var(--star-size, 1));
-  height: calc(11px * var(--star-size, 1));
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.98),
-    0 0 22px rgba(80, 244, 255, 0.88),
-    0 0 38px rgba(80, 244, 255, 0.42);
-  transform: translate(-50%, -50%);
-}
-
-.main-page-body .hero-zodiac-star::before,
-.main-page-body .hero-zodiac-star::after {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  width: calc(22px * var(--star-size, 1));
-  height: 1px;
-  border-radius: 999px;
-  content: "";
-  background: rgba(255, 255, 255, 0.88);
-  transform: translate(-50%, -50%);
-}
-
-.main-page-body .hero-zodiac-star::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-/* constellation-layer는 미리 만들어 둔 별자리 div들을 이미지 위에 올리는 영역입니다. */
 .constellation-layer {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  width: min(100%, 90vh, 620px);
+  aspect-ratio: 1;
   z-index: 4;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
-.main-page-body .constellation-layer {
-  display: none;
-}
-
-/* 각 계절 별자리 묶음은 기본적으로 숨겨 둡니다. */
 .constellation-group {
   display: none;
   position: absolute;
   inset: 0;
 }
 
-/* JS가 hero-visual에 data-active-season 값을 넣으면 해당 계절 묶음만 보입니다. */
 .hero-visual[data-active-season="spring"] .spring-stars,
 .hero-visual[data-active-season="summer"] .summer-stars,
 .hero-visual[data-active-season="autumn"] .autumn-stars,
@@ -562,74 +482,30 @@ h1 {
   display: block;
 }
 
-/* line은 별 사이를 잇는 선입니다. 위치, 길이, 각도는 HTML style에 미리 적어둡니다. */
 .line {
   position: absolute;
-  height: 1px;
-  background: #a8faff;
-  opacity: 0.45;
-  transform-origin: left center;
-}
-
-.main-page-body .line {
   height: 2px;
   background: rgba(238, 254, 255, 0.98);
-  opacity: 0.86;
   box-shadow:
     0 0 8px rgba(255, 255, 255, 0.58),
     0 0 16px rgba(80, 244, 255, 0.58);
+  transform-origin: left center;
 }
 
-/* 별자리가 보인 뒤 선이 잠깐 늦게 더 선명해지도록 합니다. */
-.hero-visual[data-active-season] .constellation-group {
-  --line-opacity: 1;
-  --line-height: 2px;
-  --line-shadow: 0 0 10px rgba(80, 244, 255, 0.85);
-}
-
-.hero-visual[data-active-season] .constellation-group .line {
-  animation: line-emphasis 800ms ease 500ms forwards;
-}
-
-.main-page-body .hero-visual[data-active-season] .constellation-group {
-  --line-opacity: 1;
-  --line-height: 3px;
-  --line-shadow:
-    0 0 10px rgba(255, 255, 255, 0.86),
-    0 0 20px rgba(80, 244, 255, 0.88),
-    0 0 34px rgba(80, 244, 255, 0.36);
-}
-
-@keyframes line-emphasis {
-  to {
-    height: var(--line-height);
-    opacity: var(--line-opacity);
-    box-shadow: var(--line-shadow);
-  }
-}
-
-/* star는 별 하나입니다. left/top과 --star-size는 HTML style에 미리 적어둡니다. */
 .star {
   position: absolute;
-  width: calc(10px * var(--star-size, 1));
-  height: calc(10px * var(--star-size, 1));
-  border-radius: 50%;
-  background: #ffffff;
-  transform: translate(-50%, -50%);
-}
-
-.main-page-body .star {
   width: calc(12px * var(--star-size, 1));
   height: calc(12px * var(--star-size, 1));
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
   background: #ffffff;
   box-shadow:
     0 0 10px rgba(255, 255, 255, 0.96),
     0 0 22px rgba(80, 244, 255, 0.84),
     0 0 34px rgba(80, 244, 255, 0.34);
+  transform: translate(-50%, -50%);
 }
 
-/* season-section은 계절 카드 섹션의 위아래 여백입니다. */
+
 .season-section {
   padding: 26px 0 10px;
 }
@@ -644,7 +520,7 @@ h1 {
   overflow: visible;
 }
 
-/* section-heading은 섹션 제목과 카드 그리드 사이 간격을 담당합니다. */
+
 .section-heading {
   margin-bottom: 16px;
 }
@@ -659,7 +535,7 @@ h1 {
   font-size: 0.64rem;
 }
 
-/* section-heading h2는 계절 카드 섹션의 제목 크기입니다. */
+
 .section-heading h2 {
   margin-bottom: 0;
   font-size: clamp(1.45rem, 2.4vw, 2rem);
@@ -671,7 +547,7 @@ h1 {
   word-break: keep-all;
 }
 
-/* season-grid는 4개 계절 카드를 배치합니다. 미디어쿼리에서 2열/1열로 바뀝니다. */
+
 .season-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -683,7 +559,7 @@ h1 {
   gap: 10px;
 }
 
-/* season-card는 실제 button입니다. 클릭하면 JS가 모달을 열고, hover/focus면 별자리를 바꿉니다. */
+
 .season-card {
   display: flex;
   flex-direction: column;
@@ -701,7 +577,7 @@ h1 {
   padding: 10px 12px;
 }
 
-/* season-card::before는 카드 위쪽의 작은 별 미리보기 그림입니다. 별 이미지 파일 없이 CSS 배경으로 만듭니다. */
+
 .season-card::before {
   width: 100%;
   height: 88px;
@@ -714,43 +590,33 @@ h1 {
     radial-gradient(circle at 36% 56%, var(--cyan) 0 2px, transparent 2.5px),
     radial-gradient(circle at 58% 30%, #fff 0 1.8px, transparent 2.3px),
     radial-gradient(circle at 78% 66%, var(--cyan) 0 2px, transparent 2.5px),
+    linear-gradient(26deg, transparent 0 23%, rgba(80, 244, 255, 0.62) 23.4% 23.8%, transparent 24.2%),
+    linear-gradient(143deg, transparent 0 46%, rgba(255, 255, 255, 0.5) 46.4% 46.7%, transparent 47.1%),
     linear-gradient(145deg, rgba(18, 102, 255, 0.32), rgba(2, 8, 25, 0.78));
+  box-shadow: inset 0 0 22px rgba(80, 244, 255, 0.18);
 }
 
 .main-page-body .season-card::before {
   height: 30px;
   margin-bottom: 6px;
   background:
-    linear-gradient(180deg, rgba(18, 102, 255, 0.38), rgba(2, 8, 25, 0.54)),
-    var(--season-star-image) center 42% / 96px 96px no-repeat,
-    rgba(2, 8, 25, 0.78);
-  background-blend-mode: normal, screen, normal;
+    radial-gradient(circle at 18% 38%, #fff 0 2px, transparent 2.4px),
+    radial-gradient(circle at 36% 56%, var(--cyan) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 58% 30%, #fff 0 1.8px, transparent 2.3px),
+    radial-gradient(circle at 78% 66%, var(--cyan) 0 2px, transparent 2.5px),
+    linear-gradient(26deg, transparent 0 23%, rgba(80, 244, 255, 0.62) 23.4% 23.8%, transparent 24.2%),
+    linear-gradient(143deg, transparent 0 46%, rgba(255, 255, 255, 0.5) 46.4% 46.7%, transparent 47.1%),
+    linear-gradient(145deg, rgba(18, 102, 255, 0.32), rgba(2, 8, 25, 0.78));
 }
 
-.main-page-body .season-card.spring {
-  --season-star-image: url("../images/star/taurus.svg");
-}
 
-.main-page-body .season-card.summer {
-  --season-star-image: url("../images/star/leo.svg");
-}
-
-.main-page-body .season-card.autumn {
-  --season-star-image: url("../images/star/libra.svg");
-}
-
-.main-page-body .season-card.winter {
-  --season-star-image: url("../images/star/pisces.svg");
-}
-
-/* 카드가 선택 가능한 요소임을 보여주기 위해 테두리만 강조합니다. */
 .season-card:hover,
 .season-card:focus-visible {
   border-color: var(--cyan);
   outline: none;
 }
 
-/* season-name은 카드 안의 계절 이름입니다. */
+
 .season-name {
   color: var(--cyan);
   font-family: "Oxanium", "Noto Sans KR", sans-serif;
@@ -762,7 +628,7 @@ h1 {
   font-size: 0.68rem;
 }
 
-/* strong은 대표 별자리 이름입니다. HTML 의미상 강조 텍스트이면서 카드의 핵심 제목 역할을 합니다. */
+
 .season-card strong {
   display: block;
   margin: 0.35rem 0 0.45rem;
@@ -774,7 +640,7 @@ h1 {
   font-size: 0.92rem;
 }
 
-/* season-note는 카드의 짧은 설명입니다. */
+
 .season-note {
   margin-bottom: 0.9rem;
   color: var(--text-muted);
@@ -793,22 +659,6 @@ h1 {
   -webkit-line-clamp: 2;
 }
 
-/* season-action은 카드 하단의 "자세히 보기" 문구입니다. margin-top:auto로 항상 아래쪽에 붙습니다. */
-.season-action {
-  align-self: flex-start;
-  margin-top: auto;
-  padding: 0.38rem 0.7rem;
-  border: 1px solid rgba(80, 244, 255, 0.35);
-  border-radius: 7px;
-  color: var(--white);
-  background: rgba(80, 244, 255, 0.1);
-  font-size: 0.92rem;
-  font-weight: 800;
-}
-
-.main-page-body .season-action {
-  display: none;
-}
 
 @media (min-width: 981px) {
   .main-page-body {
@@ -866,20 +716,6 @@ h1 {
 
   .main-page-body .hero-visual img {
     min-height: 0;
-  }
-
-  .main-page-body .hero-visual .hero-star-image {
-    position: absolute;
-    inset: auto;
-    top: calc(50vh - 170px);
-    left: calc(50vw - var(--visual-left));
-    width: min(42vw, 580px);
-    height: min(48vh, 500px);
-    object-fit: contain;
-    object-position: center;
-    opacity: 0.86;
-    transform: translate(-50%, -50%) scale(0.94);
-    transform-origin: center;
   }
 
   .main-page-body .season-section {
@@ -951,8 +787,8 @@ h1 {
   .main-page-body .season-card::before {
     height: 136px;
     margin-bottom: 12px;
-    background-position: center, center, center;
-    background-size: auto, contain, auto;
+    background-position: center;
+    background-size: auto;
   }
 
   .main-page-body .season-name {
@@ -970,7 +806,7 @@ h1 {
   }
 }
 
-/* modal은 화면 전체를 덮는 팝업 컨테이너입니다. 기본은 숨기고 JS가 is-open을 붙이면 보입니다. */
+
 .modal {
   position: fixed;
   inset: 0;
@@ -980,12 +816,12 @@ h1 {
   padding: 24px;
 }
 
-/* modal.is-open은 열림 상태입니다. JS에서 classList.add/remove로 이 클래스를 제어합니다. */
+
 .modal.is-open {
   display: grid;
 }
 
-/* modal-backdrop은 팝업 뒤 어두운 배경입니다. data-close-modal 덕분에 클릭하면 닫힙니다. */
+
 .modal-backdrop {
   position: absolute;
   inset: 0;
@@ -993,13 +829,13 @@ h1 {
   backdrop-filter: blur(8px);
 }
 
-/* modal-panel은 실제 팝업 내용 상자입니다. width:min으로 큰 화면과 작은 화면을 모두 대응합니다. */
+
 .modal-panel {
   width: min(920px, 100%);
   padding: 30px;
 }
 
-/* modal-close는 오른쪽 위 닫기 버튼입니다. hover 장식은 없애고, 키보드 focus만 명확히 표시합니다. */
+
 .modal-close {
   position: absolute;
   top: 12px;
@@ -1014,34 +850,34 @@ h1 {
   cursor: pointer;
 }
 
-/* focus-visible은 키보드로 이동했을 때만 보이는 접근성용 포커스 표시입니다. */
+
 .modal-close:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 2px;
 }
 
-/* modal-season은 "봄 대표 별자리" 같은 보조 제목입니다. JS가 텍스트를 채웁니다. */
+
 .modal-season {
   margin-bottom: 0.46rem;
   color: var(--cyan);
   font-weight: 800;
 }
 
-/* modal-panel h2는 모달의 큰 제목입니다. 닫기 버튼과 겹치지 않게 오른쪽 padding을 둡니다. */
+
 .modal-panel h2 {
   margin-bottom: 0.8rem;
   padding-right: 42px;
   font-size: 1.85rem;
 }
 
-/* modal-summary는 JS가 만든 별자리 설명 카드 3개를 담는 그리드입니다. */
+
 .modal-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-/* modal-summary article은 JS의 createConstellationCard 함수가 만드는 개별 설명 카드입니다. */
+
 .modal-summary article {
   overflow: hidden;
   padding: 12px 14px;
@@ -1050,7 +886,7 @@ h1 {
   background: rgba(5, 29, 58, 0.42);
 }
 
-/* modal-summary img는 각 별자리 사진입니다. aspect-ratio로 카드마다 이미지 높이를 일정하게 맞춥니다. */
+
 .modal-summary img {
   display: block;
   width: 100%;
@@ -1062,14 +898,14 @@ h1 {
   background: rgba(2, 8, 25, 0.7);
 }
 
-/* modal-summary h3는 각 설명 카드의 별자리 이름입니다. */
+
 .modal-summary h3 {
   margin: 0 0 0.35rem;
   color: var(--white);
   font-size: 1.05rem;
 }
 
-/* modal-summary p는 각 설명 카드의 설명 문장입니다. */
+
 .modal-summary p {
   margin-bottom: 0;
   color: var(--text-muted);
@@ -1077,7 +913,7 @@ h1 {
   line-height: 1.6;
 }
 
-/* 980px 이하에서는 hero를 1열로 바꾸고 계절 카드는 2열로 줄여 태블릿 화면에 맞춥니다. */
+
 @media (max-width: 980px) {
   .site-header {
     padding: 0 16px;
@@ -1128,7 +964,7 @@ h1 {
   }
 }
 
-/* 620px 이하에서는 모바일처럼 헤더를 세로 배치하고 카드/버튼은 한 줄에 하나씩 보이게 합니다. */
+
 @media (max-width: 620px) {
   .site-header {
     align-items: flex-start;
@@ -1243,7 +1079,7 @@ h1 {
   .season-grid {
     grid-template-columns: 1fr;
   }
-/*모달 화면에서 스크롤 가능하게*/
+
   .modal {
     align-items: flex-start;
     overflow-y: auto;
